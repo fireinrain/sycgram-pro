@@ -1,0 +1,191 @@
+# 注意，如无修改能力，勿随意更改顶级的Key
+# 按需改动
+
+# 指令 - 例子 - 格式
+# cmd: "help"
+
+# 指令前缀 - 例子 - 格式
+# all_prefixes:"-"
+
+help:
+  all_prefixes: "-"
+  cmd: h
+  format: -help <command>
+  usage: 指令列表
+
+note:
+  cmd: note
+  format: -note <save|del> <序号> or -note <序号|list|clear>
+  usage: 回复一条消息，根据序号保存/删除该消息文本
+
+dme:
+  cmd: d
+  format: -dme <数量>
+  usage: 直接使用。批量删除消息, 范围：1 ~ 1500，默认：1
+
+f:
+  cmd: f
+  format: -f <数量>
+  usage: 回复一条消息，转发该消息n次。范围：1 ~ 30， 默认：1
+
+cp:
+  cmd: cp
+  format: -cp <数量>
+  usage: 回复一条消息，无引用转发该消息n次。范围：1 ~ 30， 默认：1
+
+ghost:
+  cmd: ghost
+  format: -ghost <status|list>
+  usage: 直接使用。开启ghost的对话会被自动标记为已读
+
+id:
+  cmd: id
+  format: -id
+  usage: 回复一条消息或直接使用，查看对话及消息的ID
+
+sb:
+  cmd: sb
+  format: -sb
+  usage: 回复一条消息，将在所有共同且拥有管理踢人权限的群组中踢出目标消息的主人
+
+dc:
+  cmd: dc
+  format: -dc
+  usage: 回复一条消息，或者直接使用。查看目标消息或当前对话的DC区
+
+pingdc:
+  cmd: pdc
+  format: -pingdc
+  usage: 测试与各个DC的延时
+
+ex:
+  cmd: ex
+  format: -ex <数字> <FROM> <TO>
+  usage: 汇率转换
+
+google:
+  cmd: g
+  format: -google <无|搜索内容>
+  usage: 回复一条消息，或直接使用
+
+speedtest:
+  cmd: c
+  format: -speedtest <无|节点ID|list|update>
+  usage: 服务器本地网络测速
+
+sticker:
+  cmd: s
+  format: -s <无|emoji> or -s <sticker_set_title> <sticker_set_name>
+  usage:
+    收集回复的贴纸/图片/图片文件消息。直接使用时，可以设置默认贴纸包标题&名字；
+    回复使用时，可以指定emoji，不指定则使用默认emoji
+
+trace:
+  cmd: t
+  format: -trace <emoji|clear|list>
+  usage: 回复一条消息，当目标消息的主人发消息时，自动丢<emoji>，默认：💩。直接使用，清除所有trace目标（或展示trace名单）
+
+cc:
+  cmd: cc
+  format: -cc <数量> or -cc <emoji|set>
+  usage: 回复使用：遍历该消息的主人发过的消息并丢<数量>个<emoji>给Ta；直接使用：
+    指令<emoji>为默认emoji，若参数为set，则设置随机emoji。数量范围：1 ~ 233，Emoji默认为：💩
+
+cal:
+  cmd: cal
+  format: -cal <四则运算式>
+  usage: 直接使用。默认除法精确到小数点后4位
+
+sh:
+  cmd: sh
+  format: -sh <shell脚本>
+  usage: 直接使用
+
+sysinfo:
+  cmd: x
+  format: -sysinfo
+  usage: 直接使用，查看系统信息
+
+diss:
+  cmd: diss
+  format: -diss
+  usage: 喷子语录
+
+tg:
+  cmd: tg
+  format: -tg
+  usage: 舔狗语录
+
+archive:
+  cmd: arch
+  format: -arch
+  usage: 归档当前对话
+
+unarchive:
+  cmd: unarch
+  format: -unarch
+  usage: 撤销归档当前对话
+
+restart:
+  cmd: cq
+  format: -restart
+  usage: 重启sycgram
+
+update:
+  cmd: gx
+  format: -update <无|force>
+  usage: 更新配置文件和sycgram到主分支的最新版本
+
+prefix:
+  cmd: xg
+  format: -prefix <符号|reset>
+  usage: 修改所有指令的前缀。当参数为reset时，恢复command.yml的所有默认参数
+
+alias:
+  cmd: zl
+  format: -alias <set> <source> <to> or -alias <reset> <source> or -alias <list>
+  usage: 修改指令别名
+
+upload:
+  cmd: upload
+  format: -upload <文件路径>
+  usage: 上传容器内文件至当前对话
+
+download:
+  cmd: download
+  format: -download <无|文件路径>
+  usage: 回复一条文件/视频/图片/音乐等可下载的消息。如无指定文件路径，则默认存放至data目录
+
+ip:
+  cmd: ip
+  format: -ip <IP地址|域名|me>
+  usage: 查询IP地址或域名的信息
+
+ipcheck:
+  cmd: ipc
+  format: -ipcheck <IP|域名> <端口|无>
+  usage: 无端口参数时，查询IP或域名是否被阻断；有则查询端口是否开启
+
+bc:
+  cmd: bc
+  format: -bc num from to
+  usage: 加密货币转换 -bc 1000 jpy usd
+
+mtts:
+  cmd: yy
+  format: -mtts text
+  usage: tts AI 语音转换,-mtts list zh 模糊搜索列出含有zh字符的语音模型, -mtts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
+bin:
+  cmd: bin
+  format: -bin cardnumber
+  usage: 银行卡信息查询
+
+kfc:
+  cmd: kfc
+  format: -kfc
+  usage: 疯狂星期四文案
+
+bye:
+  cmd: bye
+  format: -bye
+  usage: 删除当前对话的消息（仅私人聊天）
