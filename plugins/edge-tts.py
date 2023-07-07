@@ -3,17 +3,15 @@ from core import command
 from pyrogram import Client
 from pyrogram.types import Message
 from tools.helpers import Parameters, delete_this
-from pymtts import async_Mtts
+
 import os
 import json
-
-CONFIG_PATH = os.path.join(os.getcwd(), "data", "mtts_config.json")
+import edge_tts
+CONFIG_PATH = os.path.join(os.getcwd(), "data", "tts_config.json")
 default_config = {
-    "short_name": "zh-CN-XiaoxiaoNeural",
-    'style': "general",
-    "rate": 0,
-    "pitch": 0,
-    "kmhz": 24
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "volume" : "+0%"
 }
 
 
@@ -30,30 +28,27 @@ async def config_check() -> dict:
 
 async def config_set(short_name: str) -> bool:
     config = await config_check()
-    config["short_name"] = short_name
+    config["voice"] = short_name
     with open(CONFIG_PATH, "w") as f:
         json.dump(config, f)
         return True
     return False
 
 
-async def save_audio(buffer: bytes) -> str:
-    with open(os.path.join(os.getcwd(), "data", "mtts.mp3"), "wb") as f:
-        f.write(buffer)
-        return os.path.join(os.getcwd(), "data", "mtts.mp3")
+async def get_audio() -> str:
+    return os.path.join(os.getcwd(), "data", "tts.mp3")
 
 
-@Client.on_message(command('mtts'))
-async def mtts(cli: Client, msg: Message):
+@Client.on_message(command('tts'))
+async def tts(cli: Client, msg: Message):
     """
     智能语言转换
     how to use
-    -mtts <direct text|list [str]|set [str]>
+    -tts <direct text|list [str]|set [str]>
     """
     cmd, opt = Parameters.get(msg)
     replied_msg = msg.reply_to_message
     print("要转换的消息",replied_msg)
-    cmtts = async_Mtts()
     if opt.startswith("set "):
         model_name = opt.split(" ")[1]
         status = await config_set(model_name)
@@ -63,25 +58,22 @@ async def mtts(cli: Client, msg: Message):
             "成功建立{}语音模型".format(model_name))
     elif opt.startswith("list "):
         tag = opt.split(" ")[1]
-        voice_model = await cmtts.get_lang_models()
-        s = "code | local name | Gender | LocaleName\r\n"
+        voice_model = await edge_tts.list_voices()
+        s = "ShortName |  Gender | FriendlyName\r\n"
         for model in voice_model:
-            if tag in model.ShortName or tag in model.Locale or tag in model.LocaleName:
-                s += "{} | {} | {} | {}\r\n".format(model.ShortName,
-                                                    model.LocalName,
-                                                    model.Gender,
-                                                    model.LocaleName)
+            if tag in model["ShortName"] or tag in model["Locale"]:
+                s += "{} | {} | {} \r\n".format(model["ShortName"],
+                                                    model["Gender"],
+                                                    model["FriendlyName"])
         await msg.edit_text(s)
     elif opt is not None and opt != " " and opt != '':
         config = await config_check()
-        mp3_buffer = await cmtts.mtts(text=opt,
-                                      short_name=config["short_name"],
-                                      style=config["style"],
+        mp3_buffer = edge_tts.Communicate(text=opt,
+                                      voice=config["voice"],
                                       rate=config["rate"],
-                                      pitch=config['pitch'],
-                                      kmhz=config["kmhz"])
-        mp3_path = await save_audio(mp3_buffer)
-
+                                      volume=config['volume'])
+        await mp3_buffer.save(audio_fname="./data/tts.mp3")
+        mp3_path = "./data/tts.mp3"
         if replied_msg is None:
             await msg.reply_voice(mp3_path)
             await delete_this(msg)
@@ -91,13 +83,12 @@ async def mtts(cli: Client, msg: Message):
             await delete_this(msg)
     elif replied_msg is not None:
         config = await config_check()
-        mp3_buffer = await cmtts.mtts(text=replied_msg.text,
-                                      short_name=config["short_name"],
-                                      style=config["style"],
+        mp3_buffer = edge_tts.Communicate(text=replied_msg.text,
+                                      voice=config["voice"],
                                       rate=config["rate"],
-                                      pitch=config['pitch'],
-                                      kmhz=config["kmhz"])
-        mp3_path = await save_audio(mp3_buffer)
+                                      volume=config['volume'])
+        await mp3_buffer.save(audio_fname="./data/tts.mp3")
+        mp3_path = "./data/tts.mp3"
         await msg.reply_voice(mp3_path,
                               reply_to_message_id=replied_msg.id)
         await delete_this(msg)

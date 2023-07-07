@@ -171,10 +171,10 @@ bc:
   format: -bc num from to
   usage: 加密货币转换 -bc 1000 jpy usd
 
-mtts:
+tts:
   cmd: yy
-  format: -mtts text
-  usage: tts AI 语音转换,-mtts list zh 模糊搜索列出含有zh字符的语音模型, -mtts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
+  format: -tts text
+  usage: tts AI 语音转换,-tts list zh 模糊搜索列出含有zh字符的语音模型, -tts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
 bin:
   cmd: bin
   format: -bin cardnumber

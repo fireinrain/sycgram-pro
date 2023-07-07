@@ -21,4 +21,4 @@ soupsieve
 TgCrypto
 win32-setctime
 yarl
-pymtts
+edge-tts
