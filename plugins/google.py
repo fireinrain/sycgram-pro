@@ -28,7 +28,7 @@ async def google(_: Client, msg: Message):
             f"[{title[0:30]}]({url})" for title, url in res.items()
         )
         pattern = re.sub(r'[_*`[]', '', pattern[0:30])
-        text = f"🔎 | **Google** | `{pattern}`\n{links}"
+        text = f"🔎 | **谷歌搜索结果** | `{pattern}`\n{links}"
         await msg.edit_text(
             text=text,
             parse_mode=ParseMode.MARKDOWN,
