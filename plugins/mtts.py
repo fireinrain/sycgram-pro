@@ -52,7 +52,7 @@ async def mtts(cli: Client, msg: Message):
     """
     cmd, opt = Parameters.get(msg)
     replied_msg = msg.reply_to_message
-    print("要恢复的信息",replied_msg)
+    print("要转换的消息",replied_msg)
     cmtts = async_Mtts()
     if opt.startswith("set "):
         model_name = opt.split(" ")[1]

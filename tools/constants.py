@@ -40,7 +40,7 @@ STICKER_IMG: str = './data/img/tmp.png'
 STICKER_DESCRIP: str = b'A Telegram user has created the Sticker\xc2\xa0Set.'.decode(
     'utf-8')
 GT_120_STICKERS: str = "哇!这些贴纸大概够一套了, " \
-                       "饶了它吧。目前一套贴纸不能超过120个。"
+                       "让它休息一下吧。目前一套贴纸不能超过120个。"
 UNACCEPTABLE_SET_NAME: str = '对不起，这个短名字不能使用。'
 TAKEN_SET_NAME: str = '对不起，这个短名字已经有人用了。'
 INVALID_SET_NAME: str = '选择了无效的集合。'
