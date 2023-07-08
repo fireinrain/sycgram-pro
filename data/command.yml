@@ -175,10 +175,7 @@ tts:
   cmd: yy
   format: -tts text
   usage: tts AI 语音转换,-tts list zh 模糊搜索列出含有zh字符的语音模型, -tts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
-bin:
-  cmd: bin
-  format: -bin cardnumber
-  usage: 银行卡信息查询
+
 
 kfc:
   cmd: kfc
