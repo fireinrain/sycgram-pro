@@ -15,7 +15,7 @@ async def helper(_: Client, msg: Message):
         text = f"📢 **指令列表：**\n{tmp}\n\n**发送** `{helper_cmd} " \
                f"<{cmd if cmd else 'cmd'}>` **查看某指令的详细用法**"
     elif not data.get(cmd) and cmd not in cmd_alias:
-        text = f"❗️ Without this command >>> `{cmd}`"
+        text = f"❗️ 这个指令不存在 >>> `{cmd}`"
     else:
         key = cmd if data.get(cmd) else cmd_alias.get(cmd)
         text = f"格式：`{data.get(key).get('format')}`\n" \

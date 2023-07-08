@@ -53,7 +53,7 @@ async def download(_: Client, msg: Message):
         return await show_exception(msg, e)
     else:
         if res:
-            await msg.edit_text("✅ 下载成功.")
+            await msg.edit_text("✅ 下载成功。")
             await asyncio.sleep(3)
             await delete_this(msg)
         else:

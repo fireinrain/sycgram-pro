@@ -27,14 +27,14 @@ async def note(_: Client, msg: Message):
         if len(opts) == 2 and opts[0] == 'save' and replied_msg:
             if replied_msg:
                 notes_data[opts[1]] = replied_msg.text or replied_msg.caption
-                text = "😊 笔记保存成功."
+                text = "😊 笔记保存成功。"
             else:
                 return await show_cmd_tip(msg, cmd)
         elif len(opts) == 2 and opts[0] == 'del':
             if notes_data.pop(opts[1], None):
-                text = "😊 笔记删除成功."
+                text = "😊 笔记删除成功。"
             else:
-                text = "❓ 找不到需要删除的笔记."
+                text = "❓ 找不到需要删除的笔记。"
         elif len(opts) == 1:
             option = opts[0]
             if option == 'list':
@@ -43,7 +43,7 @@ async def note(_: Client, msg: Message):
                 text = f"已保存的笔记：\n{tmp}"
             elif option == 'clear':
                 notes_data.clear()
-                text = "✅ 所有保存的笔记已被删除."
+                text = "✅ 所有保存的笔记已被删除。"
             else:
                 res = notes_data.get(option)
                 text = res if res else f"😱 没有找到{option}对应的笔记 "

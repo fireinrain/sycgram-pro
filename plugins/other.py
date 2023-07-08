@@ -14,7 +14,7 @@ async def diss(_: Client, msg: Message):
     """喷人"""
     symbol = '💢 '
     api = 'https://zuan.shabi.workers.dev/'
-    await msg.edit_text(f"{symbol}正在准备开喷.")
+    await msg.edit_text(f"{symbol}正在准备开喷。")
     await get_api(api=api, msg=msg)
 
 
@@ -24,7 +24,7 @@ async def tg(_: Client, msg: Message):
     symbol = '👅 '
     # api = 'http://ovooa.com/API/tgrj/api.php'
     api='https://www.xzccc.com/api/dog/'
-    await msg.edit_text(f"{symbol}正在准备开舔.")
+    await msg.edit_text(f"{symbol}正在准备开舔。")
     await get_api(api=api, msg=msg)
 
 @Client.on_message(command('kfc'))
@@ -32,7 +32,7 @@ async def kfc(_: Client, msg: Message):
     """肯德基"""
     symbol = 'vm50ing... '
     api='https://kfc-crazy-thursday.vercel.app/api/index'
-    await msg.edit_text(f"{symbol}正在准备.")
+    await msg.edit_text(f"正在准备{symbol}。")
     await get_api(api=api, msg=msg)
 
 async def get_api(api: str, msg: Message) -> None:
@@ -59,6 +59,6 @@ async def get_api(api: str, msg: Message) -> None:
         return
     # Failed to get api text
     await delete_this(msg)
-    res = await msg.edit_text('😤 休息一下.')
+    res = await msg.edit_text('😤 休息一下。')
     await asyncio.sleep(3)
     await delete_this(res)

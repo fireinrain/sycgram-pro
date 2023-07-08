@@ -21,7 +21,7 @@ async def trace_event(cli: Client, msg: Message):
                 msg.chat.id, msg.id, emoji
             )
         except BadRequest:
-            failure = f"在 <{msg.chat.title}> 群组中不能使用 {emoji} 来回应."
+            failure = f"在 <{msg.chat.title}> 群组中不能使用 {emoji} 来回应。"
             store.data[STORE_TRACE_DATA].pop(user.id, None)
             store.flush()
             await cli.send_message('me', failure)
@@ -39,7 +39,7 @@ async def trace(cli: Client, msg: Message):
     replied_msg = msg.reply_to_message
 
     if not opt and not replied_msg:
-        await msg.edit_text(f'❗️ 使用 `{cmd}` 来回复一条消息.')
+        await msg.edit_text(f'❗️ 使用 `{cmd}` 来回复一条消息。')
         return
 
     if opt != 'clear' and opt != 'list':
@@ -53,7 +53,7 @@ async def trace(cli: Client, msg: Message):
             )
         except RPCError as e:
             logger.warning(e)
-            await msg.edit_text(f"❗️ 不能在聊天中使用 {emoji} .")
+            await msg.edit_text(f"❗️ 不能在聊天中使用 {emoji}。")
             return
 
     async with SimpleStore() as store:

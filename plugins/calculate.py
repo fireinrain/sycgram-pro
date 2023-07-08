@@ -14,12 +14,12 @@ async def calculate(_: Client, msg: Message):
     try:
         res = await basher(f"""echo "scale=4;{args}" | bc""", 3)
     except asyncio.exceptions.TimeoutError:
-        return await show_exception(msg, "Connection Timeout！")
+        return await show_exception(msg, "连接超时！")
     if not res.get('output'):
         await msg.edit_text(f"Error：{res.get('error')}")
         return
 
-    text = f"""In：`{args}`\nOut：`{res.get('output')}`"""
+    text = f"""输入：`{args}`\n输出：`{res.get('output')}`"""
     try:
         await msg.edit_text(text)
     except FloodWait as e:

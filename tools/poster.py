@@ -85,7 +85,7 @@ async def process_check_data(opt: int, resp: Dict[str, Any]) -> str:
     if opt == 1:
         data = resp.get('data')
         if resp.get('error') or not data.get('success'):
-            return f"⚠️ Api Connection failed. Message is `{resp.get('msg')}`"
+            return f"⚠️ Api连接失败。返回结果是 `{resp.get('msg')}`"
         _data = data.get('data')
         in_icmp = "✅" if _data.get('innerICMP') else "❌"
         in_tcp = "✅" if _data.get('innerTCP') else "❌"

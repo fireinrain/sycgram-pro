@@ -9,10 +9,10 @@ from tools.helpers import Parameters, delete_this
 async def check_replied_msg(msg: Message, cmd: str) -> bool:
     replied_msg = msg.reply_to_message
     if not replied_msg:
-        await msg.edit_text(f"❗️ 请使用 `{cmd}` 回复一条消息.")
+        await msg.edit_text(f"❗️ 请使用 `{cmd}` 回复一条消息。")
         return False
     elif replied_msg.has_protected_content or replied_msg.chat.has_protected_content:
-        await msg.edit_text("😮‍💨 请不要转发受保护的消息")
+        await msg.edit_text("😮‍💨 请不要转发受保护的消息！")
         return False
     else:
         return True

@@ -15,7 +15,7 @@ async def calculate(client: Client, msg: Message):
 
     await msg.edit_text(text="即将销毁当前对话。。。")
     cid = msg.chat.id
-    logger.info(f"This chat_id is {cid}")
+    logger.info(f"这个chat_id是 {cid}")
 
     # msg_ids = []
     await client.delete_messages(chat_id=cid, message_ids=[

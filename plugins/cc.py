@@ -88,7 +88,7 @@ async def cc(cli: Client, msg: Message):
 
             if not res and shot == 0:
                 await msg.edit_text(
-                    f"这个聊天不允许使用 {cc_emoji} 做出反应."
+                    f"这个聊天不允许使用 {cc_emoji} 做出反应。"
                 )
                 return
 

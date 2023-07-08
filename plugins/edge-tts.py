@@ -6,6 +6,7 @@ from tools.helpers import Parameters, delete_this
 
 import os
 import json
+import asyncio
 import edge_tts
 CONFIG_PATH = os.path.join(os.getcwd(), "data", "tts_config.json")
 default_config = {
@@ -27,7 +28,7 @@ async def config_check() -> dict:
 
 
 async def config_set(short_name: str) -> bool:
-    config = await config_check()
+    config = await asyncio.run(config_check())
     config["voice"] = short_name
     with open(CONFIG_PATH, "w") as f:
         json.dump(config, f)
@@ -51,7 +52,7 @@ async def tts(cli: Client, msg: Message):
     print("要转换的消息",replied_msg)
     if opt.startswith("set "):
         model_name = opt.split(" ")[1]
-        status = await config_set(model_name)
+        status = await asyncio.run(config_set(model_name))
         if not status:
             await msg.edit_text('❗️ TTS设置错误')
         await msg.edit_text(
@@ -67,7 +68,7 @@ async def tts(cli: Client, msg: Message):
                                                     model["FriendlyName"])
         await msg.edit_text(s)
     elif opt is not None and opt != " " and opt != '':
-        config = await config_check()
+        config = await asyncio.run(config_check())
         mp3_buffer = edge_tts.Communicate(text=opt,
                                       voice=config["voice"],
                                       rate=config["rate"],
@@ -82,7 +83,7 @@ async def tts(cli: Client, msg: Message):
                 mp3_path, reply_to_message_id=replied_msg.id)
             await delete_this(msg)
     elif replied_msg is not None:
-        config = await config_check()
+        config = await asyncio.run(config_check())
         mp3_buffer = edge_tts.Communicate(text=replied_msg.text,
                                       voice=config["voice"],
                                       rate=config["rate"],

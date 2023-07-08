@@ -45,12 +45,12 @@ async def sticker(cli: Client, msg: Message):
         else:
             pkg_title, pkg_name = args
             if len(pkg_title.encode()) >= 168:
-                await msg.edit_text('❗️ 贴纸标题太长.')
+                await msg.edit_text('❗️ 贴纸标题太长。')
                 return
             elif len(pkg_name.encode()) >= 58:
-                await msg.edit_text('❗️ 贴纸名称太长.')
+                await msg.edit_text('❗️ 贴纸名称太长。')
                 return
-            await msg.edit_text('✅ 自定义贴纸标题和名称成功.')
+            await msg.edit_text('✅ 自定义贴纸标题和名称成功。')
 
         async with SimpleStore() as store:
             store.data['sticker_set_title'] = pkg_title

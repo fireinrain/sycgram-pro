@@ -79,7 +79,7 @@ def get_fullname(user: User) -> str:
         return user.first_name
 
     else:
-        return "Anonymous"
+        return "匿名"
 
 
 def get_default_pkg(user: User) -> Tuple[str]:
@@ -167,11 +167,11 @@ async def execute(command: str) -> Dict[str, Any]:
     try:
         stdout, stderr = await executor.communicate()
     except Exception as e:
-        return {'output': '', 'error': str(e)}
+        return {'输出': '', '错误': str(e)}
     else:
         return {
-            'output': stdout.decode('utf-8', 'ignore').strip(),
-            'error': stderr.decode('utf-8', 'ignore').strip()
+            '输出': stdout.decode('utf-8', 'ignore').strip(),
+            '错误': stderr.decode('utf-8', 'ignore').strip()
         }
 
 

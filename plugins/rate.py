@@ -12,14 +12,14 @@ async def rate(_: Client, msg: Message):
     """查询当天货币汇率，格式：-ex <float> <FROM> <TO>"""
     cmd, args = Parameters.get_more(msg)
     if len(args) != 3:
-        failure = f"❗️ 请这样使用 `{cmd} 1 usd cny`, 它将从美元兑换成人民币."
+        failure = f"❗️ 请这样使用 `{cmd} 1 usd cny`，它将从美元兑换成人民币。"
         await msg.edit_text(failure)
         return
 
     try:
         num = abs(float(args[0]))
     except ValueError:
-        await msg.edit_text("❗️ 你应该输入一个数字,你个傻钩子")
+        await msg.edit_text("❗️ 你应该输入一个数字，你个傻钩子。")
         return
     else:
         __from = args[1].lower()
