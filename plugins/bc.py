@@ -36,7 +36,7 @@ async def coin(_: Client, msg: Message):
         await msg.edit_text(fail_msg)
         return 
     try:
-        num=abs(float(args[0]))
+        num=int(abs(float(args[0])))
         # print("this is num",num)
     except ValueError:
         await msg.edit_text("你应该输入一个数字，你个傻钩子。")

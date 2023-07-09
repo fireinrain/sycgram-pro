@@ -167,11 +167,11 @@ async def execute(command: str) -> Dict[str, Any]:
     try:
         stdout, stderr = await executor.communicate()
     except Exception as e:
-        return {'输出': '', '错误': str(e)}
+        return {'output': '', 'error': str(e)}
     else:
         return {
-            '输出': stdout.decode('utf-8', 'ignore').strip(),
-            '错误': stderr.decode('utf-8', 'ignore').strip()
+            'output': stdout.decode('utf-8', 'ignore').strip(),
+            'error': stderr.decode('utf-8', 'ignore').strip()
         }
 
 
