@@ -31,12 +31,13 @@ async def coin(_: Client, msg: Message):
         msg (Message): _description_
     """
     cmd, args = Parameters.get_more(msg)
+    num=0.0
     if len(args) !=3:
         fail_msg=f" 这个命令应该这样使用`{cmd} 1 xmr usdt`它将以实时汇率，将1 xmr转换为usdt。"
         await msg.edit_text(fail_msg)
         return 
     try:
-        num=int(abs(float(args[0])))
+        num=abs(float(args[0]))
         # print("this is num",num)
     except ValueError:
         await msg.edit_text("你应该输入一个数字，你个傻钩子。")
