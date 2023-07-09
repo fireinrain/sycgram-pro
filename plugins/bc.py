@@ -44,7 +44,6 @@ async def coin(_: Client, msg: Message):
     
     _from=args[1].upper()
     _to=args[2].upper()
-    rates=None
     try:
         rates=await get_from_exchanger("USD")
         CNY=rates["CNY"]
