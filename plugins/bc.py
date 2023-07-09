@@ -42,17 +42,17 @@ async def coin(_: Client, msg: Message):
         await msg.edit_text("你应该输入一个数字，你个傻钩子。")
         return
     
-    _from=args[1].upper()
-    _to=args[2].upper()
+    _from=args[1]。upper()
+    _to=args[2]。upper()
     rates=None
     try:
         rates=await get_from_exchanger("USD")
         CNY=rates["CNY"]
-        if  _from in rates:
+        if  _from 在 rates:
             
             from_rates=await get_from_exchanger(_from)
             cny=num*from_rates["CNY"]
-            if _to in rates:
+            if _to 在 rates:
                 result= num * from_rates[_to]
             else:
                 if _to=="USDT":
@@ -63,7 +63,7 @@ async def coin(_: Client, msg: Message):
         else:
             from_usdt=await get_from_biance(_from)
             cny=num*from_usdt*CNY
-            if _to in rates:
+            if _to 在 rates:
                 result=num*rates[_to]*from_usdt
             else:
                 if _to=="USDT":
