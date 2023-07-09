@@ -28,7 +28,7 @@ async def config_check() -> dict:
 
 
 async def config_set(short_name: str) -> bool:
-    config = await asyncio.run(config_check())
+    config = await asyncio.create_task(config_check())
     config["voice"] = short_name
     with open(CONFIG_PATH, "w") as f:
         json.dump(config, f)
@@ -52,7 +52,7 @@ async def tts(cli: Client, msg: Message):
     print("要转换的消息",replied_msg)
     if opt.startswith("set "):
         model_name = opt.split(" ")[1]
-        status = await asyncio.run(config_set(model_name))
+        status = await asyncio.create_task(config_set(model_name))
         if not status:
             await msg.edit_text('❗️ TTS设置错误')
         await msg.edit_text(
@@ -60,7 +60,7 @@ async def tts(cli: Client, msg: Message):
     elif opt.startswith("list "):
         tag = opt.split(" ")[1]
         voice_model = await edge_tts.list_voices()
-        s = "ShortName |  Gender | FriendlyName\r\n"
+        s = "ShortName               |       Gender      |           FriendlyName\r\n"
         for model in voice_model:
             if tag in model["ShortName"] or tag in model["Locale"]:
                 s += "{} | {} | {} \r\n".format(model["ShortName"],
@@ -68,7 +68,7 @@ async def tts(cli: Client, msg: Message):
                                                     model["FriendlyName"])
         await msg.edit_text(s)
     elif opt is not None and opt != " " and opt != '':
-        config = await asyncio.run(config_check())
+        config = await asyncio.create_task(config_check())
         mp3_buffer = edge_tts.Communicate(text=opt,
                                       voice=config["voice"],
                                       rate=config["rate"],
@@ -83,7 +83,7 @@ async def tts(cli: Client, msg: Message):
                 mp3_path, reply_to_message_id=replied_msg.id)
             await delete_this(msg)
     elif replied_msg is not None:
-        config = await asyncio.run(config_check())
+        config = await asyncio.create_task(config_check())
         mp3_buffer = edge_tts.Communicate(text=replied_msg.text,
                                       voice=config["voice"],
                                       rate=config["rate"],
