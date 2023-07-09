@@ -32,7 +32,7 @@ async def coin(_: Client, msg: Message):
     """
     cmd, args = Parameters.get_more(msg)
     if len(args) !=3:
-        fail_msg=f" 这个命令应该这样使用`{cmd}` 1 xmr usdt)它将以实时汇率，将1 xmr转换为usdt。"
+        fail_msg=f" 这个命令应该这样使用`{cmd} 1 xmr usdt`它将以实时汇率，将1 xmr转换为usdt。"
         await msg.edit_text(fail_msg)
         return 
     try:
@@ -71,7 +71,7 @@ async def coin(_: Client, msg: Message):
                 else:
                     to_usdt=await get_from_biance(_to)
                     result=num*from_usdt/to_usdt
-        currency = f"```{num} {_from} = {result:.8f} {_to} = {cny} CNY \n\r实时汇率来自于binance```"
+        currency = f"{num} {_from} = {result:.8f} {_to} = {cny} CNY \n实时汇率来自于binance"
         await msg.edit_text(currency)
     except Exception as e:
         logger.error(e)
