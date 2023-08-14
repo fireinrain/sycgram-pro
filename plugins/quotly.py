@@ -101,9 +101,9 @@ async def quote(_: Client, msg: Message):
         if req['ok'] == True:
             try:
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
-                open('Quotly.png', 'wb').write(buffer)
+                open('Quotly.webp', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.png',force_document=False,reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.webp',force_document=False,reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误❗️ ")
@@ -161,9 +161,9 @@ async def quote(_: Client, msg: Message):
         if req['ok'] == True:
             try:
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
-                open('Quotly.png', 'wb').write(buffer)
+                open('Quotly.webp', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.png',force_document=False,reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.webp',force_document=False,reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误")
@@ -212,7 +212,7 @@ async def fake_quote(_: Client, msg: Message):
                 "title": title,
                 "name": name
             },
-            "text": opt
+            "text": msg.arguments
         }
         # Add the new message to the 'messages' array
         json_data["messages"].append(messages_json)
@@ -225,9 +225,9 @@ async def fake_quote(_: Client, msg: Message):
         if req['ok'] == True:
             try:
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
-                open('Quotly.png', 'wb').write(buffer)
+                open('Quotly.webp', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.png',force_document=False,reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.webp',force_document=False,reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误")
@@ -235,3 +235,5 @@ async def fake_quote(_: Client, msg: Message):
                 await delete_this(msg)
                 return 
             return
+        else:
+            await msg.edit("请求出现错误")
