@@ -71,7 +71,7 @@ async def quote(_: Client, msg: Message):
         "scale": 2,
         "messages": []
     }
-    cmd, opt = Parameters.get_int(msg)
+    cmd, opt = Parameters.get_more(msg)
     # 检测是否回复一条消息
     if not await check_replied_msg(msg, cmd):
         return
@@ -189,7 +189,7 @@ async def fake_quote(_: Client, msg: Message):
         "scale": 2.5,
         "messages": []
     }
-    cmd, opt = Parameters.get_int(msg)
+    cmd, opt = Parameters.get_more(msg)
     # 检测是否回复一条消息
     if not await check_replied_msg(msg, cmd):
         return
