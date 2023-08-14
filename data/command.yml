@@ -186,3 +186,13 @@ bye:
   cmd: bye
   format: -bye
   usage: 删除当前对话的消息（仅私人聊天）
+
+quotly:
+  cmd: q
+  format: -q <消息数量>
+  usage: 回复一条消息以生成语录,未指定消息数量则默认为1
+
+fakequotly:
+  cmd: faq
+  format: -faq <虚假的内容>
+  usage: 回复一条消息并加上内容以生成虚假语录

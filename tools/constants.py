@@ -74,3 +74,6 @@ STORE_NOTES_DATA: str = 'data:notes'
 STORE_TRACE_DATA: str = 'data:trace'
 STORE_GHOST_DATA: str = 'data:ghost'
 STORE_GHOST_CACHE: str = 'cache:ghost'
+
+# ------------- Quotly -------------
+QUOTLY_API: str = 'https://bot.lyo.su/quote/generate'
