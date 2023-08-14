@@ -212,7 +212,7 @@ async def fake_quote(_: Client, msg: Message):
                 "title": title,
                 "name": name
             },
-            "text": msg.arguments
+            "text": opt[0]
         }
         # Add the new message to the 'messages' array
         json_data["messages"].append(messages_json)
