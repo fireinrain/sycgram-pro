@@ -22,3 +22,4 @@ TgCrypto
 win32-setctime
 yarl
 edge-tts
+requests
