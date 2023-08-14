@@ -103,7 +103,7 @@ async def quote(_: Client, msg: Message):
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
                 open('Quotly.png', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.png',reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.png',force_document=False,reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误❗️ ")
@@ -163,7 +163,7 @@ async def quote(_: Client, msg: Message):
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
                 open('Quotly.png', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.png',reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.png',force_document=False,reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误")
@@ -227,7 +227,7 @@ async def fake_quote(_: Client, msg: Message):
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
                 open('Quotly.png', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.png',reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.png',force_document=False,reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误")

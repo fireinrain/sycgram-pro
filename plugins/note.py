@@ -39,7 +39,7 @@ async def note(_: Client, msg: Message):
             option = opts[0]
             if option == 'list':
                 tmp = '\n'.join(
-                    f'```{k} | {v[0:30]} ...```' for k, v in notes_data.items())
+                    f'`{k} | {v[0:30]} ...`' for k, v in notes_data.items())
                 text = f"已保存的笔记：\n{tmp}"
             elif option == 'clear':
                 notes_data.clear()
