@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  sycgram-service:
+    image: liuzy/sycgram:latest
+    container_name: sycgram
+    network_mode: host
+    volumes:
+      - ./data:/sycgram/data
+      - ./data/config.ini:/sycgram/data/config.ini
