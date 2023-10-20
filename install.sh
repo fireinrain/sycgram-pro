@@ -121,8 +121,6 @@ install_sycgram(){
 
     printf "请输入 sycgram 容器的名称："
     read -r container_name <&1
-    
-    CONTAINER_NAME="${PROJECT_PATH}/${container_name}"
 
     pre_check;
     check_and_create_config;
@@ -137,7 +135,7 @@ install_sycgram(){
     --env TZ="Asia/Shanghai" \
     --restart always \
     --hostname ${container_name} \
-    -v ${CONTAINER_NAME}/data:/sycgram/data \
+    -v ${PROJECT_PATH}/data:/sycgram/data \
     ${GITHUB_IMAGE_PATH}:latest
 }
 
