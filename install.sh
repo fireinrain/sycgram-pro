@@ -4,7 +4,8 @@ clear
 CONTAINER_NAME="sycgram"
 GITHUB_IMAGE_NAME="h88782481/${CONTAINER_NAME}"
 GITHUB_IMAGE_PATH="ghcr.io/${GITHUB_IMAGE_NAME}"
-#PROJECT_PATH="/opt/${CONTAINER_NAME}"
+# 修改为当前路径
+PROJECT_PATH="$PWD"
 PROJECT_VERSION="v3.1.4"
 
 red='\033[0;31m'
@@ -121,7 +122,7 @@ install_sycgram(){
     printf "请输入 sycgram 容器的名称："
     read -r container_name <&1
     
-    PROJECT_PATH="/opt/${container_name}"
+    CONTAINER_NAME="${PROJECT_PATH}/${container_name}"
 
     pre_check;
     check_and_create_config;
@@ -136,7 +137,7 @@ install_sycgram(){
     --env TZ="Asia/Shanghai" \
     --restart always \
     --hostname ${container_name} \
-    -v ${PROJECT_PATH}/data:/sycgram/data \
+    -v ${CONTAINER_NAME}/data:/sycgram/data \
     ${GITHUB_IMAGE_PATH}:latest
 }
 
