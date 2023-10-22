@@ -1,4 +1,4 @@
-name: push-ghcrio
+name: push-dockerhub
 
 on:
   push:
