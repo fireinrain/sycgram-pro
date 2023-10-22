@@ -202,3 +202,8 @@ faq:
   cmd: 1a2b
   format: -1a2b <start|stop|answer|numbers-you-give>
   usage: 猜数字游戏
+
+abstract:
+  cmd: abs
+  format: -abs <想要抽象的文字>
+  usage: 抽象你的文字(使用emoji翻译你的文字)
