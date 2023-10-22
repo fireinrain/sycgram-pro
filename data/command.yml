@@ -207,3 +207,8 @@ abstract:
   cmd: abs
   format: -abs <想要抽象的文字>
   usage: 抽象你的文字(使用emoji翻译你的文字)
+
+bingwall:
+  cmd: bgw
+  format: -bgw <O|无>
+  usage: 每日bing wallpaper壁纸,O参数发送原图
