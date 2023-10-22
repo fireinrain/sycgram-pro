@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: liuzy/sycgram:latest
+          tags: liuzy/sycgram-pro:latest
