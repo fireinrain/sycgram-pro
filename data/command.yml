@@ -212,3 +212,8 @@ bingwall:
   cmd: bgw
   format: -bgw <O|无>
   usage: 每日bing wallpaper壁纸,O参数发送原图
+
+base64:
+  cmd: base64
+  format: base64 <e|d> text
+  usage: 使用base64 编解码文字内容
