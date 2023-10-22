@@ -7,7 +7,17 @@ from pyrogram.errors import FloodWait, RPCError
 from pyrogram.types import Message
 from tools.helpers import delete_this, escape_markdown
 from tools.sessions import session
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+diss:
+  cmd: diss
+  format: -diss
+  usage: 喷子语录
+"""
+
 
 @Client.on_message(command("diss"))
 async def diss(_: Client, msg: Message):
@@ -18,22 +28,45 @@ async def diss(_: Client, msg: Message):
     await get_api(api=api, msg=msg)
 
 
+"""
+data/command.yml
+
+tg:
+  cmd: tg
+  format: -tg
+  usage: 舔狗语录
+"""
+
+
 @Client.on_message(command('tg'))
 async def tg(_: Client, msg: Message):
     """舔狗"""
     symbol = '👅 '
     # api = 'http://ovooa.com/API/tgrj/api.php'
-    api='https://www.xzccc.com/api/dog/'
+    api = 'https://www.xzccc.com/api/dog/'
     await msg.edit_text(f"{symbol}正在准备开舔。")
     await get_api(api=api, msg=msg)
+
+
+"""
+data/command.yml
+
+kfc:
+  cmd: kfc
+  format: -kfc
+  usage: 疯狂星期四文案
+
+"""
+
 
 @Client.on_message(command('kfc'))
 async def kfc(_: Client, msg: Message):
     """肯德基"""
     symbol = 'vm50ing... '
-    api='https://kfc-crazy-thursday.vercel.app/api/index'
+    api = 'https://kfc-crazy-thursday.vercel.app/api/index'
     await msg.edit_text(f"正在准备{symbol}。")
     await get_api(api=api, msg=msg)
+
 
 async def get_api(api: str, msg: Message) -> None:
     for _ in range(10):

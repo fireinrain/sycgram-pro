@@ -8,7 +8,19 @@ from pyrogram.errors import FloodWait, RPCError
 from pyrogram.types import Message
 from tools.constants import TG_BOT, TG_PRIVATE
 from tools.helpers import delete_this, kick_one, show_cmd_tip
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+sb:
+  cmd: sb
+  format: -sb
+  usage: 回复一条消息，将在所有共同且拥有管理踢人权限的群组中踢出目标消息的主人
+
+
+"""
+
 
 @Client.on_message(command('sb'))
 async def sb(cli: Client, msg: Message):

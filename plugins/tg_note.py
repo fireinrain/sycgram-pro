@@ -9,6 +9,15 @@ from tools.constants import STORE_NOTES_DATA
 from tools.helpers import Parameters, show_cmd_tip
 from tools.storage import SimpleStore
 
+"""
+data/command.yml
+
+note:
+  cmd: note
+  format: -note <save|del> <序号> or -note <序号|list|clear>
+  usage: 回复一条消息，根据序号保存/删除该消息文本
+"""
+
 
 @Client.on_message(command('note'))
 async def note(_: Client, msg: Message):

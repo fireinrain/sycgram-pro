@@ -31,6 +31,14 @@ async def ghost_event(cli: Client, msg: Message):
         finally:
             await logger.complete()
 
+"""
+data/command.yml
+
+ghost:
+  cmd: ghost
+  format: -ghost <status|list>
+  usage: 直接使用。开启ghost的对话会被自动标记为已读
+"""
 
 @Client.on_message(command('ghost'))
 async def ghost(_: Client, msg: Message):

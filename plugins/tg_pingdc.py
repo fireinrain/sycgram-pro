@@ -2,7 +2,17 @@ from core import command
 from pyrogram import Client
 from pyrogram.types import Message
 from tools.helpers import execute
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+pingdc:
+  cmd: pdc
+  format: -pingdc
+  usage: 测试与各个DC的延时
+"""
+
 
 @Client.on_message(command('pingdc'))
 async def pingdc(_: Client, msg: Message):

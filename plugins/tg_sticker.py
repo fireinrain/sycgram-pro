@@ -10,7 +10,8 @@ from tools.helpers import (Parameters, check_if_package_existed,
                            get_default_pkg, show_exception)
 from tools.stickers import StickerAdder, sticker_cond, sticker_locker
 from tools.storage import SimpleStore
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
 
 @Client.on_message(filters.incoming & filters.user(STICKER_BOT), group=-1)
 async def sticker_event(cli: Client, msg: Message):
@@ -29,6 +30,16 @@ async def sticker_event(cli: Client, msg: Message):
     await logger.complete()
 
 
+"""
+data/command.yml
+
+sticker:
+  cmd: s
+  format: -s <无|emoji> or -s <sticker_set_title> <sticker_set_name>
+  usage:
+    收集回复的贴纸/图片/图片文件消息。直接使用时，可以设置默认贴纸包标题&名字；
+    回复使用时，可以指定emoji，不指定则使用默认emoji
+"""
 @Client.on_message(command('sticker'))
 async def sticker(cli: Client, msg: Message):
     """
@@ -102,16 +113,16 @@ async def sticker(cli: Client, msg: Message):
 
 
 async def sticker_helper(
-    cli: Client,
-    msg: Message,
-    pkg_title: str,
-    pkg_name: str,
-    pkg_existed: bool,
+        cli: Client,
+        msg: Message,
+        pkg_title: str,
+        pkg_name: str,
+        pkg_existed: bool,
 ):
     replied = msg.reply_to_message
     if not (replied.sticker or replied.photo or (
-        replied.document and
-        'image' in replied.document.mime_type
+            replied.document and
+            'image' in replied.document.mime_type
     )):
         raise TypeError("这不是图片")
 
@@ -143,7 +154,7 @@ async def sticker_helper(
             await adder.send_message(pkg_name)
 
         if adder.is_finished(pkg_existed):
-            success = success.replace('<time>', f'{time()-start:.3f}', 1)
+            success = success.replace('<time>', f'{time() - start:.3f}', 1)
             await adder.done(success, parse_mode=ParseMode.MARKDOWN)
             return
         else:

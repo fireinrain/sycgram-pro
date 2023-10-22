@@ -8,6 +8,15 @@ from pyrogram.types import Message
 from tools.constants import DOWNLOAD_PATH, SYCGRAM
 from tools.helpers import Parameters, delete_this, show_cmd_tip, show_exception
 
+"""
+data/command.yml
+
+upload:
+  cmd: upload
+  format: -upload <文件路径>
+  usage: 上传容器内文件至当前对话
+"""
+
 
 @Client.on_message(command("upload"))
 async def upload(cli: Client, msg: Message):
@@ -35,6 +44,15 @@ async def upload(cli: Client, msg: Message):
             await msg.edit_text("⚠️ 可能上传失败 ...")
 
 
+"""
+data/command.yml
+
+download:
+  cmd: download
+  format: -download <无|文件路径>
+  usage: 回复一条文件/视频/图片/音乐等可下载的消息。如无指定文件路径，则默认存放至data目录
+
+"""
 @Client.on_message(command("download"))
 async def download(_: Client, msg: Message):
     """下载目标消息的文件"""

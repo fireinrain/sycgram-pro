@@ -6,6 +6,15 @@ from tools.helpers import Parameters, show_cmd_tip, show_exception
 from tools.poster import check_ip, check_ip_port, process_check_data
 from tools.sessions import session
 
+"""
+data/command.yml
+
+ip:
+  cmd: ip
+  format: -ip <IP地址|域名|me>
+  usage: 查询IP地址或域名的信息
+"""
+
 
 @Client.on_message(command('ip'))
 async def ip(_: Client, msg: Message):
@@ -31,6 +40,16 @@ async def ip(_: Client, msg: Message):
         return await show_exception(msg, e)
     else:
         await msg.edit_text(text)
+
+
+"""
+data/command.yml
+
+ipcheck:
+  cmd: ipc
+  format: -ipcheck <IP|域名> <端口|无>
+  usage: 无端口参数时，查询IP或域名是否被阻断；有则查询端口是否开启
+"""
 
 
 @Client.on_message(command("ipcheck"))

@@ -4,6 +4,14 @@ from pyrogram import Client
 from pyrogram.types import Message
 from tools.constants import TG_GROUPS
 
+"""
+data/command.yml
+bye:
+  cmd: bye
+  format: -bye true
+  usage: 销毁当前私人对话
+"""
+
 
 @Client.on_message(command("bye"))
 async def calculate(client: Client, msg: Message):

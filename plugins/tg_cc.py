@@ -12,6 +12,17 @@ from tools.constants import CC_MAX_TIMES, REACTIONS, STORE_CC_DATA, TG_GROUPS
 from tools.helpers import Parameters, delete_this, emoji_sender, show_cmd_tip
 from tools.storage import SimpleStore
 
+"""
+data/command.yml
+
+cc:
+  cmd: cc
+  format: -cc <数量> or -cc <emoji|set>
+  usage: 回复使用：遍历该消息的主人发过的消息并丢<数量>个<emoji>给Ta；直接使用：
+    指令<emoji>为默认emoji，若参数为set，则设置随机emoji。数量范围：1 ~ 233，Emoji默认为：💩
+
+"""
+
 
 @Client.on_message(command('cc'))
 async def cc(cli: Client, msg: Message):

@@ -9,6 +9,14 @@ from pyrogram.types import Message
 from tools.helpers import Parameters, basher, delete_this, show_cmd_tip, show_exception
 from pyrogram.enums import ParseMode 
 
+"""
+data/command.yml
+
+sh:
+  cmd: sh
+  format: -sh <shell脚本>
+  usage: 直接使用
+"""
 @Client.on_message(command("sh"))
 async def shell(_: Client, msg: Message):
     """执行shell脚本"""

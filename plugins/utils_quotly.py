@@ -9,6 +9,7 @@ from pyrogram.types import Message
 from tools.helpers import Parameters, delete_this
 from tools.constants import QUOTLY_API
 
+
 async def check_replied_msg(msg: Message, cmd: str) -> bool:
     replied_msg = msg.reply_to_message
     if not replied_msg:
@@ -18,6 +19,7 @@ async def check_replied_msg(msg: Message, cmd: str) -> bool:
         return False
     else:
         return True
+
 
 async def forward_info(reply):
     # 判断转发来源
@@ -58,7 +60,18 @@ async def forward_info(reply):
         except AttributeError:
             pass
         title = name
-    return sid,title,name
+    return sid, title, name
+
+
+"""
+data/command.yml
+
+q:
+  cmd: q
+  format: -q <消息数量>
+  usage: 回复一条消息以生成语录,未指定消息数量则默认为1
+"""
+
 
 @Client.on_message(command('q'))
 async def quote(_: Client, msg: Message):
@@ -78,7 +91,7 @@ async def quote(_: Client, msg: Message):
     # 无参数则默认为当前回复的消息
     if not opt:
         reply = msg.reply_to_message
-        sid, title ,name = await forward_info(reply)
+        sid, title, name = await forward_info(reply)
         messages_json = {
             "entities": [],
             "avatar": True,
@@ -103,13 +116,13 @@ async def quote(_: Client, msg: Message):
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
                 open('Quotly.webp', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.webp',force_document=False,reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.webp', force_document=False, reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误❗️ ")
                 await asyncio.sleep(3)
                 await delete_this(msg)
-                return 
+                return
             return
     elif int(opt) == 1:
         try:
@@ -118,10 +131,10 @@ async def quote(_: Client, msg: Message):
             await msg.edit("❗️ 你应该输入一个数字，你个傻钩子。")
             await asyncio.sleep(3)
             await delete_this(msg)
-            return 
+            return
         reply = msg.reply_to_message
 
-        sid, title ,name = await forward_info(reply)
+        sid, title, name = await forward_info(reply)
         messages_json = {
             "entities": [],
             "avatar": True,
@@ -137,12 +150,12 @@ async def quote(_: Client, msg: Message):
         json_data["messages"].append(messages_json)
 
         messages = Client.get_chat_history(
-            reply.chat.id, 
+            reply.chat.id,
             limit=num,
             offset_id=reply.id)
         # Extract the message texts
         async for msg in messages:
-            sid, title ,name = await forward_info(msg)
+            sid, title, name = await forward_info(msg)
             messages_json = {
                 "entities": [],
                 "avatar": True,
@@ -163,19 +176,19 @@ async def quote(_: Client, msg: Message):
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
                 open('Quotly.webp', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.webp',force_document=False,reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.webp', force_document=False, reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误")
                 await asyncio.sleep(3)
                 await delete_this(msg)
-                return 
+                return
             return
     else:
         await msg.edit("错误，请使用帮助命令显示用例")
         await asyncio.sleep(3)
         await delete_this(msg)
-        return 
+        return
 
 
 @Client.on_message(command('faq'))
@@ -198,11 +211,11 @@ async def fake_quote(_: Client, msg: Message):
         await msg.edit("未指定内容, 无法生成")
         await asyncio.sleep(3)
         await delete_this(msg)
-        return 
+        return
     else:
         reply = msg.reply_to_message
 
-        sid, title ,name = await forward_info(reply)
+        sid, title, name = await forward_info(reply)
         messages_json = {
             "entities": [],
             "avatar": True,
@@ -227,13 +240,13 @@ async def fake_quote(_: Client, msg: Message):
                 buffer = base64.b64decode(req['result']['image'].encode('utf-8'))
                 open('Quotly.webp', 'wb').write(buffer)
                 await msg.edit("已在Lyosu生成并保存语录, 正在上传中...")
-                await msg.reply_document('Quotly.webp',force_document=False,reply_to_message_id=reply.id)
+                await msg.reply_document('Quotly.webp', force_document=False, reply_to_message_id=reply.id)
                 await delete_this(msg)
             except:
                 await msg.edit("请求成功但出现错误")
                 await asyncio.sleep(3)
                 await delete_this(msg)
-                return 
+                return
             return
         else:
             await msg.edit("请求出现错误")

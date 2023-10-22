@@ -3,6 +3,15 @@ from pyrogram import Client
 from pyrogram.types import Message
 from tools.helpers import get_fullname
 
+"""
+data/command.yml
+
+id:
+  cmd: id
+  format: -id
+  usage: 回复一条消息或直接使用，查看对话及消息的ID
+"""
+
 
 @Client.on_message(command("id"))
 async def get_id(_: Client, msg: Message):
@@ -16,7 +25,7 @@ async def get_id(_: Client, msg: Message):
     if replied_msg and replied_msg.from_user:
         user = replied_msg.from_user
         text = f"回复消息ID: `{replied_msg.id}`\n\n" \
-               f"用户昵称: `{get_fullname(user)}`\n"\
+               f"用户昵称: `{get_fullname(user)}`\n" \
                f"用户名: `@{user.username}`\n" \
                f"用户ID: `{user.id}`\n\n" \
                f"{text}"

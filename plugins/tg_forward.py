@@ -17,6 +17,15 @@ async def check_replied_msg(msg: Message, cmd: str) -> bool:
     else:
         return True
 
+"""
+data/command.yml
+
+f:
+  cmd: f
+  format: -f <数量>
+  usage: 回复一条消息，转发该消息n次。范围：1 ~ 30， 默认：1
+"""
+
 
 @Client.on_message(command('f'))
 async def forward(_: Client, msg: Message):
@@ -32,6 +41,15 @@ async def forward(_: Client, msg: Message):
             await replied_msg.forward(msg.chat.id, disable_notification=True)
         except RPCError as e:
             logger.error(e)
+
+"""
+data/command.yml
+
+cp:
+  cmd: cp
+  format: -cp <数量>
+  usage: 回复一条消息，无引用转发该消息n次。范围：1 ~ 30， 默认：1
+"""
 
 
 @Client.on_message(command('cp'))

@@ -3,6 +3,15 @@ from pyrogram import Client
 from pyrogram.types import Message
 from tools.helpers import get_dc_text
 from pyrogram.enums import ParseMode 
+"""
+data/command.yml
+
+dc:
+  cmd: dc
+  format: -dc
+  usage: 回复一条消息，或者直接使用。查看目标消息或当前对话的DC区
+"""
+
 
 @Client.on_message(command('dc'))
 async def dc(_: Client, msg: Message):

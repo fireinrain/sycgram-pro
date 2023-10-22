@@ -6,6 +6,15 @@ from pyrogram.errors import FloodWait, RPCError
 from pyrogram.types import Message
 from tools.helpers import Parameters, basher, show_exception
 
+"""
+data/command.yml
+
+cal:
+  cmd: cal
+  format: -cal <四则运算式>
+  usage: 直接使用。默认除法精确到小数点后4位
+"""
+
 
 @Client.on_message(command("cal"))
 async def calculate(_: Client, msg: Message):

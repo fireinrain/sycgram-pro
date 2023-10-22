@@ -8,7 +8,17 @@ from pyrogram.types import Message
 from tools.constants import SPEEDTEST_RUN, SYCGRAM_INFO
 from tools.helpers import Parameters, delete_this, show_cmd_tip, show_exception
 from tools.speedtests import Speedtester
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+speedtest:
+  cmd: c
+  format: -speedtest <无|节点ID|list|update>
+  usage: 服务器本地网络测速
+"""
+
 
 @Client.on_message(command('speedtest'))
 async def speedtest(_: Client, msg: Message):

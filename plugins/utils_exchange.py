@@ -6,6 +6,15 @@ from tools.constants import RATE_API
 from tools.helpers import Parameters
 from tools.sessions import session
 
+"""
+data/command.yml
+
+ex:
+  cmd: ex
+  format: -ex <数字> <FROM> <TO>
+  usage: 汇率转换
+"""
+
 
 @Client.on_message(command('ex'))
 async def rate(_: Client, msg: Message):
@@ -27,7 +36,7 @@ async def rate(_: Client, msg: Message):
 
     for _ in range(10):
         async with session.get(
-            f'{RATE_API}/{__from}/{__to}.json', timeout=5.5
+                f'{RATE_API}/{__from}/{__to}.json', timeout=5.5
         ) as resp:
             try:
                 if resp.status == 200:

@@ -8,6 +8,14 @@ from pyrogram import Client
 from pyrogram.errors import FloodWait, RPCError
 from pyrogram.types import Message
 from tools.helpers import Parameters, get_iterlimit, is_deleted_id
+"""
+data/command.yml
+
+dme:
+  cmd: d
+  format: -dme <数量>
+  usage: 直接使用。批量删除消息, 范围：1 ~ 1500，默认：1
+"""
 
 
 @Client.on_message(command('dme'))

@@ -9,7 +9,17 @@ from pyrogram.types import Message
 from tools.constants import REACTIONS, STORE_TRACE_DATA
 from tools.helpers import Parameters, delete_this
 from tools.storage import SimpleStore
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+trace:
+  cmd: t
+  format: -trace <emoji|clear|list>
+  usage: 回复一条消息，当目标消息的主人发消息时，自动丢<emoji>，默认：💩。直接使用，清除所有trace目标（或展示trace名单）
+"""
+
 
 @Client.on_message(is_traced(), group=-4)
 async def trace_event(cli: Client, msg: Message):

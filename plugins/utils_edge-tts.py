@@ -41,6 +41,15 @@ async def get_audio() -> str:
     return os.path.join(os.getcwd(), "data", "tts.mp3")
 
 
+'''
+data/commmand.yml
+tts:
+  cmd: tts
+  format: -tts text
+  usage: tts AI 语音转换,-tts list zh 模糊搜索列出含有zh字符的语音模型, -tts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
+'''
+
+
 @Client.on_message(command('tts'))
 async def tts(cli: Client, msg: Message):
     """
@@ -101,11 +110,5 @@ async def tts(cli: Client, msg: Message):
         await msg.edit_text("错误，请使用帮助命令显示用例")
 
 
-'''
-in commmand.yml
-mtts:
-  cmd: mtts
-  format: -mtts text
-  usage: tts AI 语音转换,-mtts list zh 模糊搜索列出含有zh字符的语音模型, -mtts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
-'''
+
 

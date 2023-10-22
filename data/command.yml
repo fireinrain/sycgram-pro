@@ -104,7 +104,7 @@ sh:
 sysinfo:
   cmd: x
   format: -sysinfo
-  usage: 直接使用，查看系统信息
+  usage: 直接使用，查看当前运行环境系统信息
 
 diss:
   cmd: diss
@@ -200,5 +200,5 @@ faq:
 # 移植PagerMaid-Pyro 插件
 1a2b:
   cmd: 1a2b
-  format: -1a2b start/stop/answer/numbers-you-give
+  format: -1a2b <start|stop|answer|numbers-you-give>
   usage: 猜数字游戏

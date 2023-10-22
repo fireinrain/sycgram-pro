@@ -8,7 +8,17 @@ from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 from tools.poster import google_search
 from tools.helpers import Parameters, show_cmd_tip, show_exception
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+google:
+  cmd: g
+  format: -google <无|搜索内容>
+  usage: 回复一条消息，或直接使用
+"""
+
 
 @Client.on_message(command("google"))
 async def google(_: Client, msg: Message):

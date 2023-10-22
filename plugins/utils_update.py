@@ -12,7 +12,17 @@ from tools.helpers import Parameters, show_cmd_tip, show_exception
 from tools.updates import (get_alias_of_cmds, is_latest_version,
                            pull_and_update_command_yml, reset_cmd_alias,
                            update_cmd_alias, update_cmd_prefix)
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+restart:
+  cmd: cq
+  format: -restart
+  usage: 重启sycgram
+"""
+
 
 @Client.on_message(command("restart"))
 async def restart(_: Client, msg: Message):
@@ -20,6 +30,16 @@ async def restart(_: Client, msg: Message):
     text = f"**{SYCGRAM_INFO}**\n> # `重新启动 {SYCGRAM} ...`"
     await msg.edit_text(text=text, parse_mode=ParseMode.MARKDOWN)
     sys.exit()
+
+
+"""
+data/command.yml
+
+update:
+  cmd: gx
+  format: -update <无|force>
+  usage: 更新配置文件和sycgram到主分支的最新版本
+"""
 
 
 @Client.on_message(command("update"))
@@ -57,6 +77,16 @@ async def update(_: Client, msg: Message):
         await msg.edit_text(text, parse_mode=ParseMode.MARKDOWN)
 
 
+"""
+data/command.yml
+
+prefix:
+  cmd: xg
+  format: -prefix <符号|reset>
+  usage: 修改所有指令的前缀。当参数为reset时，恢复command.yml的所有默认参数
+"""
+
+
 @Client.on_message(command("prefix"))
 async def prefix(_: Client, msg: Message):
     """更改所有指令的前缀"""
@@ -85,6 +115,16 @@ async def prefix(_: Client, msg: Message):
         text = f"**{SYCGRAM_INFO}**\n> # `正在重新更新所有命令的前缀。`"
         await msg.edit_text(text, parse_mode=ParseMode.MARKDOWN)
         sys.exit()
+
+
+"""
+data/command.yml
+
+alias:
+  cmd: zl
+  format: -alias <set> <source> <to> or -alias <reset> <source> or -alias <list>
+  usage: 修改指令别名
+"""
 
 
 @Client.on_message(command("alias"))

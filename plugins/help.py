@@ -2,7 +2,18 @@ from core import CMDS_DATA, command
 from pyrogram import Client
 from pyrogram.types import Message
 from tools.helpers import Parameters
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+
+"""
+data/command.yml
+
+help:
+  all_prefixes: "-"
+  cmd: h
+  format: -help <command>
+  usage: 指令列表
+"""
+
 
 @Client.on_message(command('help'))
 async def helper(_: Client, msg: Message):
