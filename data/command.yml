@@ -96,6 +96,11 @@ cal:
   format: -cal <四则运算式>
   usage: 直接使用。默认除法精确到小数点后4位
 
+basecon:
+  cmd: bsc
+  format: -bsc <进制(数字)> <数值>
+  usage: 进制转换, bsc 2 99(将99转换为2进制)
+
 sh:
   cmd: sh
   format: -sh <shell脚本>

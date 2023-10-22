@@ -23,8 +23,8 @@ async def base64(_: Client, message: Message):
     if not msg:
         return await message.edit_text("`出错了呜呜呜 ~ 无效的参数。`")
     args_list = args.split(" ")
-    subcmd = args_list[0].trim()
-    msg = args_list[1].trim()
+    subcmd = args_list[0].strip()
+    msg = args_list[1].strip()
     if subcmd == "e":
         if result := b64encode(msg.encode("utf-8")).decode("utf-8"):
             await message.edit_text(f"`{result}`")
