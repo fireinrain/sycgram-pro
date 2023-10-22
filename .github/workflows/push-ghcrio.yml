@@ -2,14 +2,17 @@
 name: Build Docker Image
 
 # 当 push 到 main 分支，或者创建以 v 开头的 tag 时触发，可根据需求修改
+#on:
+#  push:
+#    tags:
+#      - v*
 on:
   push:
-    tags:
-      - v*
-
+    branches:
+      - 'main'
 env:
   REGISTRY: ghcr.io
-  IMAGE: h88782481/sycgram # prinsss/ga-hit-counter
+  IMAGE: fireinrain/sycgram-pro # prinsss/ga-hit-counter
 
 jobs:
   build-and-push:
