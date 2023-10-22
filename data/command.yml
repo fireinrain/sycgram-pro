@@ -217,3 +217,8 @@ base64:
   cmd: base64
   format: base64 <e|d> text
   usage: 使用base64 编解码文字内容
+
+credit:
+  cmd: crt
+  format: crt <bin 4-8位数字>
+  usage: 查询信用卡简略信息
