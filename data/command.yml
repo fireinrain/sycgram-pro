@@ -196,3 +196,9 @@ faq:
   cmd: faq
   format: -faq <虚假的内容>
   usage: 回复一条消息并加上内容以生成虚假语录
+
+# 移植PagerMaid-Pyro 插件
+1a2b:
+  cmd: 1a2b
+  format: -1a2b start/stop/answer/numbers-you-give
+  usage: 猜数字游戏
