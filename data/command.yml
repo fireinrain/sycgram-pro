@@ -227,3 +227,8 @@ credit:
   cmd: crt
   format: crt <bin 4-8位数字>
   usage: 查询信用卡简略信息
+
+runcode:
+  cmd: runcode
+  format: runcode <编程语言后缀名> <代码>
+  usage: 在线运行代码并展示结果
