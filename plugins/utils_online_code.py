@@ -43,11 +43,11 @@ async def run_code(codes: str, client: ClientSession):
     }
     # cookie 可能失效
     headers = {
-        "Authorization": "Token 0123456-789a-bcde-f012-3456789abcde",
+        "Authorization": "Token e192d37d-c85f-41d5-bf39-2eaf16ea97fa",
         "Origin": "https://glot.io",
         "Content-Type": "application/json",
         "Referer": f"https://glot.io/new/{codeType[language_type][1]}",
-        "Cookie": "_SESSION=wt+lfkRPpAp1NZ5US7KhBb4SYzuixAoPkVRm0+ub/e+tz6EQMdCgjPPB5OaxudjLSkw6hiZIJPfAFwjdH9QU2N0LEfnh6NzbXTMeyTgu3s65UpV+rPXP/h4exogT8L/zfyl7NIN1Yd9SD4zXfkcYQCbZS04orUF5ZXJ4l8JXRouJmThGX9n0vb+VMzSrGuHBA/C+eEIXJmsQImILtNDKxDmGp6vB4I+nv0b59cfzJUsgS7XcCCn8"
+        # "Cookie": "_SESSION=wt+lfkRPpAp1NZ5US7KhBb4SYzuixAoPkVRm0+ub/e+tz6EQMdCgjPPB5OaxudjLSkw6hiZIJPfAFwjdH9QU2N0LEfnh6NzbXTMeyTgu3s65UpV+rPXP/h4exogT8L/zfyl7NIN1Yd9SD4zXfkcYQCbZS04orUF5ZXJ4l8JXRouJmThGX9n0vb+VMzSrGuHBA/C+eEIXJmsQImILtNDKxDmGp6vB4I+nv0b59cfzJUsgS7XcCCn8"
     }
     res = await client.post(
         url=f"https://glot.io/run/{codeType[language_type][0]}?version=latest",
