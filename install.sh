@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-CONTAINER_NAME="sycgram"
+CONTAINER_NAME="sycgram-pro"
 GITHUB_IMAGE_NAME="liuzy/${CONTAINER_NAME}"
 GITHUB_IMAGE_PATH="${GITHUB_IMAGE_NAME}"
 # 修改为当前路径
@@ -48,7 +48,7 @@ pre_check() {
 delete_old_image_and_container(){
     # 获取最新指令说明
     # 远程file
-    remote_file="https://raw.githubusercontent.com/h88782481/sycgram/main/data/command.yml"
+    remote_file="https://raw.githubusercontent.com/fireinrain/sycgram-pro/main/data/command.yml"
     # 本地file
     local_cmd_file="${PROJECT_PATH}/data/command.yml"
     if [[ -f ${local_cmd_file} ]]; then
@@ -85,21 +85,21 @@ EOF
 fi
 }
 
-stop_sycgram(){
+stop_sycgram_pro(){
     res=$(docker stop $(docker ps -a | grep ${GITHUB_IMAGE_NAME} | awk '{print $1}'))
     if [[ $res ]];then
-        echo -e "${yellow}已停止sycgram...${plain}"
+        echo -e "${yellow}已停止sycgram-pro...${plain}"
     else
-        echo -e "${red}无法停止sycgram...${plain}"
+        echo -e "${red}无法停止sycgram-pro...${plain}"
     fi
 }
 
-restart_sycgram(){
+restart_sycgram_pro(){
     res=$(docker restart $(docker ps -a | grep ${GITHUB_IMAGE_NAME} | awk '{print $1}'))
     if [[ $res ]];then
-        echo -e "${yellow}已重启sycgram...${plain}"
+        echo -e "${yellow}已重启sycgram-pro...${plain}"
     else
-        echo -e "${red}无法重启sycgram...${plain}"
+        echo -e "${red}无法重启sycgram-pro...${plain}"
     fi
 }
 
@@ -107,19 +107,19 @@ view_docker_log(){
     docker logs -f $(docker ps -a | grep ${GITHUB_IMAGE_NAME} | awk '{print $1}')
 }
 
-uninstall_sycgram(){
+uninstall_sycgram_pro(){
     delete_old_image_and_container;
     rm -rf ${project_path}
 }
 
-reinstall_sycgram(){
+reinstall_sycgram_pro(){
     rm -rf ${PROJECT_PATH}
     install_sycgram "-it"
 }
 
-install_sycgram(){
+install_sycgram_pro(){
 
-    printf "请输入 sycgram 容器的名称："
+    printf "请输入 sycgram-pro 容器的名称："
     read -r container_name <&1
 
     pre_check;
@@ -135,12 +135,12 @@ install_sycgram(){
     --env TZ="Asia/Shanghai" \
     --restart always \
     --hostname ${container_name} \
-    -v ${PROJECT_PATH}/data:/sycgram/data \
+    -v ${PROJECT_PATH}/data:/sycgram-pro/data \
     ${GITHUB_IMAGE_PATH}:latest
 }
 
 show_menu() {
-    echo -e "${green}Sycgram${plain} | ${green}管理脚本${plain} | ${red}${PROJECT_VERSION}${plain}"
+    echo -e "${green}Sycgram-pro${plain} | ${green}管理脚本${plain} | ${red}${PROJECT_VERSION}${plain}"
     echo -e "  ${green}1.${plain}  安装"
     echo -e "  ${green}2.${plain}  更新"
     echo -e "  ${green}3.${plain}  停止"
@@ -155,25 +155,25 @@ show_menu() {
         exit 0
         ;;
     1)
-        install_sycgram "-it"
+        install_sycgram_pro "-it"
         ;;
     2)
-        install_sycgram "-itd"
+        install_sycgram_pro "-itd"
         ;;
     3)
-        stop_sycgram
+        stop_sycgram_pro
         ;;
     4)
-        restart_sycgram
+        restart_sycgram_pro
         ;;
     5)
         view_docker_log
         ;;
     6)
-        reinstall_sycgram
+        reinstall_sycgram_pro
         ;;
     7)
-        uninstall_sycgram
+        uninstall_sycgram_pro
         ;;
     *)
         echo -e "${yellow}已退出脚本...${plain}"

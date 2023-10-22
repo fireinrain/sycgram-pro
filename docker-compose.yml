@@ -1,12 +1,12 @@
 version: "3.7"
 services:
-  sycgram-service:
-    image: liuzy/sycgram:latest
-    container_name: sycgram
+  sycgram-pro-service:
+    image: liuzy/sycgram-pro:latest
+    container_name: sycgram-pro
     network_mode: host
     volumes:
       #- ./data:/sycgram/data
-      - ./data/config.ini:/sycgram/data/config.ini
+      - ./data/config.ini:/sycgram-pro/data/config.ini
 
 # issue: 登录tg需要输入手机号码 在python库中使用input接收
 # 但是在compose环境下 无法主动输入

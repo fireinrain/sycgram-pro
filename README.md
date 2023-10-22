@@ -10,7 +10,7 @@
 
 ```shell
 # 脚本的【安装】都是前台运行，完成安装后如无报错可先后使用Ctrl+P、Ctrl+Q挂到后台运行
-bash <(curl -fsL "https://raw.githubusercontent.com/h88782481/sycgram/main/install.sh")
+bash <(curl -fsL "https://raw.githubusercontent.com/fireinrain/sycgram-pro/main/install.sh")
 ```
 
 ## 更新存在的问题
@@ -28,8 +28,8 @@ watchower存在的问题：有一定的概率拉取最新镜像后移除容器�
 ## 迁移备份
 
 1. 停止容器
-2. 打包`/opt/sycgram`文件夹到新环境相同位置
-3. 在新环境运行sycgram管理脚本
+2. 打包`./sycgram-pro`文件夹到新环境相同位置
+3. 在新环境运行sycgram-pro管理脚本
 
 
 ## 自定义指令前缀及指令别名
