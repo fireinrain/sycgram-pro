@@ -1,13 +1,15 @@
 import asyncio
+import random
 
-from core import command
 from loguru import logger
 from pyrogram import Client
+from pyrogram.enums import ParseMode
 from pyrogram.errors import FloodWait, RPCError
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import delete_this, escape_markdown
 from tools.sessions import session
-from pyrogram.enums import ParseMode
 
 """
 data/command.yml
@@ -23,7 +25,8 @@ diss:
 async def diss(_: Client, msg: Message):
     """喷人"""
     symbol = '💢 '
-    api = 'https://zuan.shabi.workers.dev/'
+    apis = ['https://zuan.shabi.workers.dev/', 'https://api.oddfar.com/yl/q.php?c=1009&encode=text']
+    api = random.choice(apis)
     await msg.edit_text(f"{symbol}正在准备开喷。")
     await get_api(api=api, msg=msg)
 
