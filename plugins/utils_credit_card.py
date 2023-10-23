@@ -29,7 +29,7 @@ async def card(_: Client, message: Message):
         await message.edit_text("出错了呜呜呜 ~ 无效的参数。")
         return
     try:
-        r = session.get(f"https://lookup.binlist.net/{card_bin}", timeout=5.5)
+        r = await session.get(f"https://lookup.binlist.net/{card_bin}", timeout=5.5)
     except Exception:
         await message.edit_text("出错了呜呜呜 ~ 无法访问到binlist。")
         return
