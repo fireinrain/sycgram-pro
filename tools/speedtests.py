@@ -23,7 +23,7 @@ class Speedtester:
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         logger.info(
-            f"Speedtest使用了 {time()-self._timer:.5f} 秒结束。")
+            f"Speedtest使用了 {time() - self._timer:.5f} 秒结束。")
 
     async def running(self, cmd: str) -> Tuple[str]:
         """开始执行speedtest
@@ -48,12 +48,15 @@ class Speedtester:
             return f"⚠️ Speedtest 错误\n```{res.get('error')}```", ''
         else:
             text = "**Speedtest**\n" \
-                f"测速点: {self.get_server()}\n" \
-                f"服务商: {self.get_sponsor()}\n" \
-                f"上传速度: {self.get_speed('upload')}\n" \
-                f"下载速度: {self.get_speed('download')}\n" \
-                f"延迟: {self.get_ping('latency')} 抖动: {self.get_ping('jitter')}\n" \
-                f"测速时间: {self.get_time()}"
+                   f"测速点: {self.get_server()}\n" \
+                   f"服务商: {self.get_sponsor()}\n" \
+                   f"上传速度: {self.get_speed('upload')}\n" \
+                   f"下载速度: {self.get_speed('download')}\n" \
+                   f"上传流量: {self.get_upload_bandwith()}\n" \
+                   f"下载流量: {self.get_download_bandwith()}\n" \
+                   f"消耗总流量: {self.get_total_bandwithcost()}\n" \
+                   f"延迟: {self.get_ping('latency')} 抖动: {self.get_ping('jitter')}\n" \
+                   f"测速时间: {self.get_time()}"
             return text, f"{self.__output.get('result').get('url')}.png"
 
     async def list_servers_ids(self, cmd: str) -> str:
@@ -81,6 +84,27 @@ class Speedtester:
     def get_sponsor(self) -> str:
         return f"`{self.__server.get('name')}`"
 
+    # 获取上传流量
+    def get_upload_bandwith(self) -> str:
+        bytes_send = self.__output.get('bytes_sent')
+        bytes_send_info = convert_bytes(int(bytes_send))
+        return f"`{bytes_send_info}`"
+
+    # 获取下载流量
+    def get_download_bandwith(self) -> str:
+        bytes_received = self.__output.get('bytes_received')
+        bytes_received_info = convert_bytes(int(bytes_received))
+        return f"`{bytes_received_info}`"
+
+    # 本次测速消耗总流量
+    def get_total_bandwithcost(self) -> str:
+        bytes_send = self.__output.get('bytes_sent')
+        bytes_received = self.__output.get('bytes_received')
+        by_send = int(bytes_send)
+        by_re = int(bytes_received)
+        s = convert_bytes(bytes_send + by_re)
+        return f"`{s}`"
+
     def get_speed(self, opt: str) -> str:
         """
         Args:
@@ -89,6 +113,7 @@ class Speedtester:
         Returns:
             str: Convert to bits
         """
+
         def convert(bits) -> str:
             """Unit conversion"""
             power = 1000
@@ -104,7 +129,8 @@ class Speedtester:
                 bits = bits / power
                 n = n + 1
             return f"{bits:.3f} {units.get(n)}"
-        return f"`{convert(self.__output.get(opt).get('bandwidth')*8)}`"
+
+        return f"`{convert(self.__output.get(opt).get('bandwidth') * 8)}`"
 
     def get_ping(self, opt: str) -> str:
         return f"`{self.__output.get('ping').get(opt):.3f}`"
@@ -142,6 +168,19 @@ class Speedtester:
     async def __download_file(self) -> None:
         await basher(INSTALL_SPEEDTEST, timeout=30)
 
+
+def convert_bytes(byte_count):
+    """字节单位换算"""
+    if byte_count < 1024:
+        return f"{byte_count} bytes"
+    elif byte_count < 1024 * 1024:
+        return f"{byte_count / 1024:.2f} KB"
+    elif byte_count < 1024 * 1024 * 1024:
+        return f"{byte_count / (1024 * 1024):.2f} MB"
+    elif byte_count < 1024 * 1024 * 1024 * 1024:
+        return f"{byte_count / (1024 * 1024 * 1024):.2f} GB"
+    else:
+        return f"{byte_count / (1024 * 1024 * 1024 * 1024):.2f} TB"
 
 # import asyncio
 # import json
