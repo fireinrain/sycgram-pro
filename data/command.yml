@@ -202,6 +202,13 @@ faq:
   format: -faq <虚假的内容>
   usage: 回复一条消息并加上内容以生成虚假语录
 
+# 独家开发的插件
+histoday:
+  cmd: histd
+  format: -histd <无>
+  usage: 生成历史上的今天
+
+
 # 移植PagerMaid-Pyro 插件
 1a2b:
   cmd: 1a2b
@@ -220,15 +227,35 @@ bingwall:
 
 base64:
   cmd: base64
-  format: base64 <e|d> text
+  format: -base64 <e|d> text
   usage: 使用base64 编解码文字内容
 
 credit:
   cmd: crt
-  format: crt <bin 4-8位数字>
+  format: -crt <bin 4-8位数字>
   usage: 查询信用卡简略信息
 
 runcode:
   cmd: runcode
-  format: runcode <编程语言名> <代码>
+  format: -runcode <编程语言名> <代码>
   usage: 在线运行代码并展示结果
+
+dictionary:
+  cmd: dic
+  format: -dic <enzh|zhen> <text>
+  usage: 在线英汉-汉英字典服务
+
+epic:
+  cmd: epic
+  format: -epic <无>
+  usage: 获取Epic Games喜加一限免
+
+whois:
+  cmd: whois
+  format: -whois <域名>
+  usage: 查看域名是否已被注册、注册日期、过期日期、域名状态、DNS解析服务器等。
+
+jupai:
+  cmd: jupai
+  format: -jupai <文本>
+  usage: 输入文字生成举牌小人图
