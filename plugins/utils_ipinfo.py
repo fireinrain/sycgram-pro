@@ -1,7 +1,8 @@
 from loguru import logger
-from core import command
 from pyrogram import Client
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import Parameters, show_cmd_tip, show_exception
 from tools.poster import check_ip, check_ip_port, process_check_data
 from tools.sessions import session
@@ -16,6 +17,10 @@ ip:
 """
 
 
+# data = await requests.get(
+#         f"http://ip-api.com/json/{url}?fields=status,message,country,regionName,"
+#         f"city,lat,lon,isp,org,as,mobile,proxy,hosting,query"
+# ) 获取更详细的信息
 @Client.on_message(command('ip'))
 async def ip(_: Client, msg: Message):
     """查询ip信息"""
