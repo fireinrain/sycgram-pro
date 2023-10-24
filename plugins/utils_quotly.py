@@ -1,13 +1,13 @@
-import requests
-import base64
 import asyncio
-from core import command
-from loguru import logger
+import base64
+
+import requests
 from pyrogram import Client
-from pyrogram.errors import RPCError
 from pyrogram.types import Message
-from tools.helpers import Parameters, delete_this
+
+from core import command
 from tools.constants import QUOTLY_API
+from tools.helpers import Parameters, delete_this
 
 
 async def check_replied_msg(msg: Message, cmd: str) -> bool:
@@ -66,14 +66,14 @@ async def forward_info(reply):
 """
 data/command.yml
 
-q:
-  cmd: q
-  format: -q <消息数量>
+quotes:
+  cmd: quot
+  format: -quot <消息数量>
   usage: 回复一条消息以生成语录,未指定消息数量则默认为1
 """
 
 
-@Client.on_message(command('q'))
+@Client.on_message(command('quotes'))
 async def quote(_: Client, msg: Message):
     json_data = {
         "type": "quote",
@@ -191,7 +191,18 @@ async def quote(_: Client, msg: Message):
         return
 
 
-@Client.on_message(command('faq'))
+"""
+data/command.yml
+
+fakeq:
+  cmd: fakeq
+  format: -fakeq <虚假的内容>
+  usage: 回复一条消息并加上内容以生成虚假语录
+  
+"""
+
+
+@Client.on_message(command('fakeq'))
 async def fake_quote(_: Client, msg: Message):
     json_data = {
         "type": "quote",

@@ -13,7 +13,7 @@ data/command.yml
 
 credit:
   cmd: crt
-  format: crt <bin 4-8位数字>
+  format: -crt <bin码(4-8位数字)>
   usage: 查询信用卡简略信息
 
 """

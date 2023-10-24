@@ -11,7 +11,7 @@ data/command.yml
 
 base64:
   cmd: base64
-  format: base64 <e|d> text
+  format: -base64 <e|d> <text>
   usage: 使用base64 编解码文字内容
 """
 

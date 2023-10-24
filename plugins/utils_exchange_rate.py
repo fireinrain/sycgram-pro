@@ -10,14 +10,15 @@ from tools.sessions import session
 """
 data/command.yml
 
-ex:
-  cmd: ex
-  format: -ex <数字> <FROM> <TO>
-  usage: 汇率转换
+exchange:
+  cmd: exc
+  format: -exc <数字> <FROM> <TO>
+  usage: 汇率转换,-exc 1 usd rmb
+
 """
 
 
-@Client.on_message(command('ex'))
+@Client.on_message(command('exchange'))
 async def rate(_: Client, msg: Message):
     """查询当天货币汇率，格式：-ex <float> <FROM> <TO>"""
     cmd, args = Parameters.get_more(msg)

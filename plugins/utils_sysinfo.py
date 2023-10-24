@@ -1,14 +1,15 @@
-from core import command
 from pyrogram import Client
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import basher
 
 """
 data/command.yml
 
 sysinfo:
-  cmd: x
-  format: -sysinfo
+  cmd: sys
+  format: -sys
   usage: 直接使用，查看当前运行环境系统信息
 """
 

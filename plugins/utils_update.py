@@ -2,23 +2,24 @@ import asyncio
 import sys
 from subprocess import PIPE, Popen
 
-from core import command
 from loguru import logger
 from pyrogram import Client
+from pyrogram.enums import ParseMode
 from pyrogram.types import Message
+
+from core import command
 from tools.constants import (SYCGRAM, SYCGRAM_ERROR, SYCGRAM_INFO,
                              SYCGRAM_WARNING, UPDATE_CMD)
 from tools.helpers import Parameters, show_cmd_tip, show_exception
 from tools.updates import (get_alias_of_cmds, is_latest_version,
                            pull_and_update_command_yml, reset_cmd_alias,
                            update_cmd_alias, update_cmd_prefix)
-from pyrogram.enums import ParseMode
 
 """
 data/command.yml
 
 restart:
-  cmd: cq
+  cmd: restart
   format: -restart
   usage: 重启sycgram
 """
@@ -36,7 +37,7 @@ async def restart(_: Client, msg: Message):
 data/command.yml
 
 update:
-  cmd: gx
+  cmd: update
   format: -update <无|force>
   usage: 更新配置文件和sycgram到主分支的最新版本
 """
@@ -80,14 +81,15 @@ async def update(_: Client, msg: Message):
 """
 data/command.yml
 
-prefix:
-  cmd: xg
-  format: -prefix <符号|reset>
+cmdprefix:
+  cmd: cmdprefix
+  format: -cmdprefix <符号|reset>
   usage: 修改所有指令的前缀。当参数为reset时，恢复command.yml的所有默认参数
+
 """
 
 
-@Client.on_message(command("prefix"))
+@Client.on_message(command("cmdprefix"))
 async def prefix(_: Client, msg: Message):
     """更改所有指令的前缀"""
     _, pfx = Parameters.get(msg)
@@ -120,14 +122,14 @@ async def prefix(_: Client, msg: Message):
 """
 data/command.yml
 
-alias:
-  cmd: zl
-  format: -alias <set> <source> <to> or -alias <reset> <source> or -alias <list>
+cmdalias:
+  cmd: cmdalias
+  format: -cmdalias <set> <source> <to> or -alias <reset> <source> or -alias <list>
   usage: 修改指令别名
 """
 
 
-@Client.on_message(command("alias"))
+@Client.on_message(command("cmdalias"))
 async def alias(_: Client, msg: Message):
     """
     cmd: alias

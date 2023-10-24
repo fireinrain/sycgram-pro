@@ -1,16 +1,17 @@
 import asyncio
 from time import time
 
-from core import command
 from loguru import logger
 from pyrogram import Client, filters
+from pyrogram.enums import ParseMode
 from pyrogram.types import Message
+
+from core import command
 from tools.constants import STICKER_BOT, STICKER_ERROR_LIST
 from tools.helpers import (Parameters, check_if_package_existed,
                            get_default_pkg, show_exception)
 from tools.stickers import StickerAdder, sticker_cond, sticker_locker
 from tools.storage import SimpleStore
-from pyrogram.enums import ParseMode
 
 
 @Client.on_message(filters.incoming & filters.user(STICKER_BOT), group=-1)
@@ -34,8 +35,8 @@ async def sticker_event(cli: Client, msg: Message):
 data/command.yml
 
 sticker:
-  cmd: s
-  format: -s <无|emoji> or -s <sticker_set_title> <sticker_set_name>
+  cmd: stck
+  format: -stck <无|emoji> or -s <sticker_set_title> <sticker_set_name>
   usage:
     收集回复的贴纸/图片/图片文件消息。直接使用时，可以设置默认贴纸包标题&名字；
     回复使用时，可以指定emoji，不指定则使用默认emoji

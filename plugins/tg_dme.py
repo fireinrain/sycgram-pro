@@ -2,23 +2,25 @@ import asyncio
 import time
 from typing import List
 
-from core import command
 from loguru import logger
 from pyrogram import Client
 from pyrogram.errors import FloodWait, RPCError
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import Parameters, get_iterlimit, is_deleted_id
+
 """
 data/command.yml
 
-dme:
-  cmd: d
+delme:
+  cmd: dme
   format: -dme <数量>
   usage: 直接使用。批量删除消息, 范围：1 ~ 1500，默认：1
 """
 
 
-@Client.on_message(command('dme'))
+@Client.on_message(command('delme'))
 async def dme(client: Client, message: Message):
     """删除指令数量的消息"""
     cmd, limit = Parameters.get_int(message, max_num=1500)

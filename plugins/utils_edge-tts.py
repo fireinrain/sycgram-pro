@@ -1,13 +1,15 @@
-from loguru import logger
 from core import command
+import asyncio
+import json
+import os
+
+import edge_tts
 from pyrogram import Client
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import Parameters, delete_this
 
-import os
-import json
-import asyncio
-import edge_tts
 CONFIG_PATH = os.path.join(os.getcwd(), "data", "tts_config.json")
 default_config = {
     "voice": "zh-CN-XiaoxiaoNeural",
@@ -43,10 +45,12 @@ async def get_audio() -> str:
 
 '''
 data/commmand.yml
+
 tts:
   cmd: tts
-  format: -tts text
+  format: -tts <文字>
   usage: tts AI 语音转换,-tts list zh 模糊搜索列出含有zh字符的语音模型, -tts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
+
 '''
 
 

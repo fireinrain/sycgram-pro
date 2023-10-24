@@ -1,23 +1,25 @@
 import asyncio
 
-from core import command
-from core.custom import is_traced
 from loguru import logger
 from pyrogram import Client
+from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest, FloodWait, RPCError
 from pyrogram.types import Message
+
+from core import command
+from core.custom import is_traced
 from tools.constants import REACTIONS, STORE_TRACE_DATA
 from tools.helpers import Parameters, delete_this
 from tools.storage import SimpleStore
-from pyrogram.enums import ParseMode
 
 """
 data/command.yml
 
 trace:
-  cmd: t
+  cmd: trace
   format: -trace <emoji|clear|list>
   usage: 回复一条消息，当目标消息的主人发消息时，自动丢<emoji>，默认：💩。直接使用，清除所有trace目标（或展示trace名单）
+
 """
 
 

@@ -1,9 +1,10 @@
-from core import command
+from loguru import logger
 from pyrogram import Client
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import Parameters
 from tools.sessions import session
-from loguru import logger
 
 EXCHANGE_API = "https://api.exchangerate-api.com/v4/latest/{}"
 BIANCE_API = "https://api.binance.com/api/v3/ticker/price?symbol={}USDT"
@@ -28,14 +29,15 @@ async def get_from_biance(coin):
 
 """
 data/command.yml
-bc:
-  cmd: bc
-  format: -bc num from to
-  usage: 加密货币转换
+
+bitcoin:
+  cmd: btcn
+  format: -btcn <num> <from coin type> <to coin type>
+  usage: 加密货币转换 -btcn 1000 jpy usd
 """
 
 
-@Client.on_message(command('bc'))
+@Client.on_message(command('bitcoin'))
 async def coin(_: Client, msg: Message):
     """_summary_
     加密货币转换器

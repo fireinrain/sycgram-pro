@@ -12,8 +12,9 @@ data/command.yml
 
 atadmin:
   cmd: atadm
-  format: -atadm <消息内容>
-  usage: 一键发送消息@本群管理员(仅在群组中有效)
+  format: -atadm <无|all|random> <消息内容>
+  usage: 一键发送消息@本群管理员(仅在群组中有效), 无参数则默认第一位管理员,all参数发送给所有管理员,random表示随机一位管理员
+
 """
 
 

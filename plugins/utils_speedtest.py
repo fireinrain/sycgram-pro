@@ -15,8 +15,8 @@ from tools.speedtests import Speedtester
 data/command.yml
 
 speedtest:
-  cmd: c
-  format: -speedtest <无|节点ID|list|update>
+  cmd: spdt
+  format: -spdt <无|节点ID|list|update>
   usage: 服务器本地网络测速
 """
 

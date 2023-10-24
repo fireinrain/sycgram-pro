@@ -1,8 +1,9 @@
-from core import command
 from loguru import logger
 from pyrogram import Client
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import Parameters, delete_this
 
 
@@ -20,14 +21,14 @@ async def check_replied_msg(msg: Message, cmd: str) -> bool:
 """
 data/command.yml
 
-f:
-  cmd: f
-  format: -f <数量>
+forward:
+  cmd: fwd
+  format: -fwd <数量>
   usage: 回复一条消息，转发该消息n次。范围：1 ~ 30， 默认：1
 """
 
 
-@Client.on_message(command('f'))
+@Client.on_message(command('forward'))
 async def forward(_: Client, msg: Message):
     """转发目标消息"""
     cmd, num = Parameters.get_int(msg)
@@ -45,14 +46,14 @@ async def forward(_: Client, msg: Message):
 """
 data/command.yml
 
-cp:
-  cmd: cp
-  format: -cp <数量>
+cpme:
+  cmd: cpme
+  format: -cpme <数量>
   usage: 回复一条消息，无引用转发该消息n次。范围：1 ~ 30， 默认：1
 """
 
 
-@Client.on_message(command('cp'))
+@Client.on_message(command('cpme'))
 async def copy_forward(cli: Client, msg: Message):
     """无引用转发"""
     cmd, num = Parameters.get_int(msg)

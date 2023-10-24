@@ -1,21 +1,22 @@
 import asyncio
 import re
 
-from core import command
 from loguru import logger
 from pyrogram import Client
+from pyrogram.enums import ParseMode
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
-from tools.poster import google_search
+
+from core import command
 from tools.helpers import Parameters, show_cmd_tip, show_exception
-from pyrogram.enums import ParseMode
+from tools.poster import google_search
 
 """
 data/command.yml
 
 google:
-  cmd: g
-  format: -google <无|搜索内容>
+  cmd: gg
+  format: -gg <无|搜索内容>
   usage: 回复一条消息，或直接使用
 """
 

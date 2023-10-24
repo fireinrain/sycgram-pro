@@ -3,11 +3,12 @@ import re
 from random import choice, random
 from typing import List
 
-from core import command
 from loguru import logger
 from pyrogram import Client
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
+
+from core import command
 from tools.constants import CC_MAX_TIMES, REACTIONS, STORE_CC_DATA, TG_GROUPS
 from tools.helpers import Parameters, delete_this, emoji_sender, show_cmd_tip
 from tools.storage import SimpleStore
@@ -15,7 +16,7 @@ from tools.storage import SimpleStore
 """
 data/command.yml
 
-cc:
+ccattack:
   cmd: cc
   format: -cc <数量> or -cc <emoji|set>
   usage: 回复使用：遍历该消息的主人发过的消息并丢<数量>个<emoji>给Ta；直接使用：
@@ -24,7 +25,7 @@ cc:
 """
 
 
-@Client.on_message(command('cc'))
+@Client.on_message(command('ccattack'))
 async def cc(cli: Client, msg: Message):
     """
     cc:

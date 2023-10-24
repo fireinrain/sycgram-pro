@@ -66,7 +66,7 @@ data/command.yml
 
 runcode:
   cmd: runcode
-  format: runcode <编程语言后缀名> <代码>
+  format: -runcode <编程语言名> <代码>
   usage: 在线运行代码并展示结果
 """
 

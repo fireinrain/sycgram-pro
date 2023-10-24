@@ -3,21 +3,24 @@ from getpass import getuser
 from io import BytesIO
 from platform import node
 
-from core import command
 from pyrogram import Client
+from pyrogram.enums import ParseMode
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import Parameters, basher, delete_this, show_cmd_tip, show_exception
-from pyrogram.enums import ParseMode 
 
 """
 data/command.yml
 
-sh:
+shell:
   cmd: sh
   format: -sh <shell脚本>
   usage: 直接使用
 """
-@Client.on_message(command("sh"))
+
+
+@Client.on_message(command("shell"))
 async def shell(_: Client, msg: Message):
     """执行shell脚本"""
     cmd, _input = Parameters.get(msg)

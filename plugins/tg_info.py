@@ -1,19 +1,20 @@
-from core import command
 from pyrogram import Client
 from pyrogram.types import Message
+
+from core import command
 from tools.helpers import get_fullname
 
 """
 data/command.yml
 
-id:
-  cmd: id
-  format: -id
+idme:
+  cmd: idme
+  format: -idme
   usage: 回复一条消息或直接使用，查看对话及消息的ID
 """
 
 
-@Client.on_message(command("id"))
+@Client.on_message(command("idme"))
 async def get_id(_: Client, msg: Message):
     """直接使用或者回复目标消息，从而获取各种IDs"""
     text = f"消息ID: `{msg.id}`\n\n" \

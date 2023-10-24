@@ -18,19 +18,19 @@ note:
   format: -note <save|del> <序号> or -note <序号|list|clear>
   usage: 回复一条消息，根据序号保存/删除该消息文本
 
-dme:
-  cmd: d
+delme:
+  cmd: dme
   format: -dme <数量>
   usage: 直接使用。批量删除消息, 范围：1 ~ 1500，默认：1
 
-f:
-  cmd: f
-  format: -f <数量>
+forward:
+  cmd: fwd
+  format: -fwd <数量>
   usage: 回复一条消息，转发该消息n次。范围：1 ~ 30， 默认：1
 
-cp:
-  cmd: cp
-  format: -cp <数量>
+cpme:
+  cmd: cpme
+  format: -cpme <数量>
   usage: 回复一条消息，无引用转发该消息n次。范围：1 ~ 30， 默认：1
 
 ghost:
@@ -38,14 +38,14 @@ ghost:
   format: -ghost <status|list>
   usage: 直接使用。开启ghost的对话会被自动标记为已读
 
-id:
-  cmd: id
-  format: -id
+idme:
+  cmd: idme
+  format: -idme
   usage: 回复一条消息或直接使用，查看对话及消息的ID
 
-sb:
-  cmd: sb
-  format: -sb
+nosee:
+  cmd: nosee
+  format: -nosee
   usage: 回复一条消息，将在所有共同且拥有管理踢人权限的群组中踢出目标消息的主人
 
 dc:
@@ -58,40 +58,40 @@ pingdc:
   format: -pingdc
   usage: 测试与各个DC的延时
 
-ex:
-  cmd: ex
-  format: -ex <数字> <FROM> <TO>
-  usage: 汇率转换
+exchange:
+  cmd: exc
+  format: -exc <数字> <FROM> <TO>
+  usage: 汇率转换,-exc 1 usd rmb
 
 google:
-  cmd: g
-  format: -google <无|搜索内容>
+  cmd: gg
+  format: -gg <无|搜索内容>
   usage: 回复一条消息，或直接使用
 
 speedtest:
-  cmd: c
-  format: -speedtest <无|节点ID|list|update>
+  cmd: spdt
+  format: -spdt <无|节点ID|list|update>
   usage: 服务器本地网络测速
 
 sticker:
-  cmd: s
-  format: -s <无|emoji> or -s <sticker_set_title> <sticker_set_name>
+  cmd: stck
+  format: -stck <无|emoji> or -s <sticker_set_title> <sticker_set_name>
   usage:
     收集回复的贴纸/图片/图片文件消息。直接使用时，可以设置默认贴纸包标题&名字；
     回复使用时，可以指定emoji，不指定则使用默认emoji
 
 trace:
-  cmd: t
+  cmd: trace
   format: -trace <emoji|clear|list>
   usage: 回复一条消息，当目标消息的主人发消息时，自动丢<emoji>，默认：💩。直接使用，清除所有trace目标（或展示trace名单）
 
-cc:
+ccattack:
   cmd: cc
   format: -cc <数量> or -cc <emoji|set>
   usage: 回复使用：遍历该消息的主人发过的消息并丢<数量>个<emoji>给Ta；直接使用：
     指令<emoji>为默认emoji，若参数为set，则设置随机emoji。数量范围：1 ~ 233，Emoji默认为：💩
 
-cal:
+calculator:
   cmd: cal
   format: -cal <四则运算式>
   usage: 直接使用。默认除法精确到小数点后4位
@@ -101,14 +101,14 @@ basecon:
   format: -bsc <进制(数字)> <数值>
   usage: 进制转换, bsc 2 99(将99转换为2进制)
 
-sh:
+shell:
   cmd: sh
   format: -sh <shell脚本>
   usage: 直接使用
 
 sysinfo:
-  cmd: x
-  format: -sysinfo
+  cmd: sys
+  format: -sys
   usage: 直接使用，查看当前运行环境系统信息
 
 diss:
@@ -116,9 +116,9 @@ diss:
   format: -diss
   usage: 喷子语录
 
-tg:
-  cmd: tg
-  format: -tg
+tiandog:
+  cmd: tdog
+  format: -tdog
   usage: 舔狗语录
 
 archive:
@@ -132,34 +132,29 @@ unarchive:
   usage: 撤销归档当前对话
 
 restart:
-  cmd: cq
+  cmd: restart
   format: -restart
   usage: 重启sycgram
 
 update:
-  cmd: gx
+  cmd: update
   format: -update <无|force>
   usage: 更新配置文件和sycgram到主分支的最新版本
 
-prefix:
-  cmd: xg
-  format: -prefix <符号|reset>
+cmdprefix:
+  cmd: cmdprefix
+  format: -cmdprefix <符号|reset>
   usage: 修改所有指令的前缀。当参数为reset时，恢复command.yml的所有默认参数
 
-alias:
-  cmd: zl
-  format: -alias <set> <source> <to> or -alias <reset> <source> or -alias <list>
+cmdalias:
+  cmd: cmdalias
+  format: -cmdalias <set> <source> <to> or -alias <reset> <source> or -alias <list>
   usage: 修改指令别名
 
-upload:
-  cmd: upload
-  format: -upload <文件路径>
-  usage: 上传容器内文件至当前对话
-
-download:
-  cmd: download
-  format: -download <无|文件路径>
-  usage: 回复一条文件/视频/图片/音乐等可下载的消息。如无指定文件路径，则默认存放至data目录
+transfer:
+  cmd: trsf
+  format: -trsf <up|down> <文件路径(相对于机器人来说)>|<无|文件路径>
+  usage: 上传容器内文件至当前对话(-trsf up xxxxx),回复一条文件/视频/图片/音乐等可下载的消息。如无指定文件路径，则默认存放至data目录(-trsf down 无|指定下载路径)
 
 ip:
   cmd: ip
@@ -171,14 +166,14 @@ ipcheck:
   format: -ipcheck <IP|域名> <端口|无>
   usage: 无端口参数时，查询IP或域名是否被阻断；有则查询端口是否开启
 
-bc:
-  cmd: bc
-  format: -bc num from to
-  usage: 加密货币转换 -bc 1000 jpy usd
+bitcoin:
+  cmd: btcn
+  format: -btcn <num> <from coin type> <to coin type>
+  usage: 加密货币转换 -btcn 1000 jpy usd
 
 tts:
-  cmd: yy
-  format: -tts text
+  cmd: tts
+  format: -tts <文字>
   usage: tts AI 语音转换,-tts list zh 模糊搜索列出含有zh字符的语音模型, -tts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
 
 
@@ -192,21 +187,21 @@ bye:
   format: -bye
   usage: 删除当前对话的消息（仅私人聊天）
 
-q:
-  cmd: q
-  format: -q <消息数量>
+quotes:
+  cmd: quot
+  format: -quot <消息数量>
   usage: 回复一条消息以生成语录,未指定消息数量则默认为1
 
-faq:
-  cmd: faq
-  format: -faq <虚假的内容>
+fakeq:
+  cmd: fakeq
+  format: -fakeq <虚假的内容>
   usage: 回复一条消息并加上内容以生成虚假语录
 
 # 独家开发的插件
 histoday:
   cmd: histd
   format: -histd <无>
-  usage: 生成历史上的今天
+  usage: 生成历史上的今天摘要
 
 
 # 移植PagerMaid-Pyro 插件
@@ -222,17 +217,17 @@ abstract:
 
 bingwall:
   cmd: bgw
-  format: -bgw <O|无>
-  usage: 每日bing wallpaper壁纸,O参数发送原图
+  format: -bgw <无|o>
+  usage: 每日bing wallpaper壁纸,o参数发送原图
 
 base64:
   cmd: base64
-  format: -base64 <e|d> text
+  format: -base64 <e|d> <text>
   usage: 使用base64 编解码文字内容
 
 credit:
   cmd: crt
-  format: -crt <bin 4-8位数字>
+  format: -crt <bin码(4-8位数字)>
   usage: 查询信用卡简略信息
 
 runcode:
@@ -241,8 +236,8 @@ runcode:
   usage: 在线运行代码并展示结果
 
 dictionary:
-  cmd: dic
-  format: -dic <enzh|zhen> <text>
+  cmd: dict
+  format: -dict <enzh|zhen> <单词或文字>
   usage: 在线英汉-汉英字典服务
 
 epic:
@@ -272,5 +267,10 @@ premium:
 
 atadmin:
   cmd: atadm
-  format: -atadm <消息内容|all 消息内容|random 消息内容>
+  format: -atadm <无|all|random> <消息内容>
   usage: 一键发送消息@本群管理员(仅在群组中有效), 无参数则默认第一位管理员,all参数发送给所有管理员,random表示随机一位管理员
+
+tgsession:
+  cmd: tgsess
+  format: -tgsess <query|logout> <标识符>
+  usage: 查询/注销已登录的Telegram会话

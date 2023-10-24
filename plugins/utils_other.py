@@ -34,14 +34,14 @@ async def diss(_: Client, msg: Message):
 """
 data/command.yml
 
-tg:
-  cmd: tg
-  format: -tg
+tiandog:
+  cmd: tdog
+  format: -tdog
   usage: 舔狗语录
 """
 
 
-@Client.on_message(command('tg'))
+@Client.on_message(command('tiandog'))
 async def tg(_: Client, msg: Message):
     """舔狗"""
     symbol = '👅 '

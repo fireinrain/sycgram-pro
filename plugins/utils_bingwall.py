@@ -26,10 +26,10 @@ async def get_wallpaper_url(num):
 """
 data/command.yml
 
-bingwall:
+ingwall:
   cmd: bgw
-  format: -bgw <O|无>
-  usage: 每日bing wallpaper壁纸,O参数发送原图
+  format: -bgw <无|o>
+  usage: 每日bing wallpaper壁纸,o参数发送原图
 """
 
 

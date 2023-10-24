@@ -10,14 +10,14 @@ from tools.helpers import Parameters, basher, show_exception
 """
 data/command.yml
 
-cal:
+calculator:
   cmd: cal
-  format: -cal <四则运算式|^|sqrt()>
+  format: -cal <四则运算式>
   usage: 直接使用。默认除法精确到小数点后4位
 """
 
 
-@Client.on_message(command("cal"))
+@Client.on_message(command("calculator"))
 async def calculate(_: Client, msg: Message):
     """计算器"""
     _, args = Parameters.get(msg)
