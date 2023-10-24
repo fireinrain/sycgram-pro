@@ -264,3 +264,8 @@ pypi:
   cmd: pypi
   format: -pypi <python包关键字>
   usage: 搜索PyPi packages
+
+premium:
+  cmd: prem
+  format: -prem <无|force>
+  usage: 列出本群的大会员占比,并展示分遗产比例
