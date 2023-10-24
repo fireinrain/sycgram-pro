@@ -1,3 +1,5 @@
+import asyncio
+
 from core import CMDS_DATA, command
 from pyrogram import Client
 from pyrogram.types import Message
@@ -34,3 +36,11 @@ async def helper(_: Client, msg: Message):
         text = f"格式：`{data.get(key).get('format')}`\n" \
                f"用法：`{data.get(key).get('usage')}`"
     await msg.edit_text(text, parse_mode=ParseMode.MARKDOWN)
+
+
+@Client.on_message(command('pingbot'))
+async def ping_bot(_: Client, msg: Message):
+    await msg.edit_text("pong from your helpful bot client")
+    # 五秒钟后自动删除
+    await asyncio.sleep(5)
+    await msg.delete()

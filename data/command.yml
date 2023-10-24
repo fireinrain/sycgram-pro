@@ -203,6 +203,11 @@ histoday:
   format: -histd <无>
   usage: 生成历史上的今天摘要
 
+pingbot:
+  cmd: pingbot
+  format: -pingbot <无>
+  usage: 检查机器人是否在线
+
 
 # 移植PagerMaid-Pyro 插件
 1a2b:
