@@ -274,3 +274,8 @@ tgsession:
   cmd: tgsess
   format: -tgsess <query|logout> <标识符>
   usage: 查询/注销已登录的Telegram会话
+
+iptrace:
+  cmd: iptrace
+  format: -iptrace <back/best>
+  usage: 主机回程路由测试(back 运行backtrace,best 运行besttrace)
