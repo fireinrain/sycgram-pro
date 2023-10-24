@@ -7,8 +7,8 @@ from core import command
 data/command.yml
 
 dictionary:
-  cmd: dic
-  format: dic <enzh|zhen> <text>
+  cmd: dict
+  format: -dict <enzh|zhen> <单词或文字>
   usage: 在线英汉-汉英字典服务
 """
 
@@ -19,3 +19,4 @@ async def dictionary(_: Client, msg: Message):
     symbol = 'vm50ing... '
     api = 'https://kfc-crazy-thursday.vercel.app/api/index'
     await msg.edit_text(f"正在准备{symbol}。")
+    # TODO 完成插件

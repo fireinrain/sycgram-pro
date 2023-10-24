@@ -1,14 +1,7 @@
-""" PagerMaid module that 抽象中文 """
-
-from pagermaid.utils import lang, Message, pip_install
 from pyrogram import Client
-
+from pyrogram.types import Message
 from core import command
 from tools.helpers import Parameters
-
-pip_install("jieba")
-pip_install("pinyin")
-
 import jieba
 import pinyin
 
@@ -1944,6 +1937,6 @@ async def abstract(_: Client, message: Message):
     cmd, args = Parameters.get(message)
     text = args.strip()
     if not text:
-        return await message.edit(lang("arg_error"))
+        return await message.edit_text("请输入正确的参数!")
     result = text_to_emoji(text)
-    await message.edit(result)
+    await message.edit_text(result)

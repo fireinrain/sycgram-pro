@@ -1,5 +1,4 @@
 import asyncio
-import random
 
 from loguru import logger
 from pyrogram import Client
@@ -10,26 +9,6 @@ from pyrogram.types import Message
 from core import command
 from tools.helpers import delete_this, escape_markdown
 from tools.sessions import session
-
-"""
-data/command.yml
-
-diss:
-  cmd: diss
-  format: -diss
-  usage: 喷子语录
-"""
-
-
-@Client.on_message(command("diss"))
-async def diss(_: Client, msg: Message):
-    """喷人"""
-    symbol = '💢 '
-    apis = ['https://zuan.shabi.workers.dev/', 'https://api.oddfar.com/yl/q.php?c=1009&encode=text']
-    api = random.choice(apis)
-    await msg.edit_text(f"{symbol}正在准备开喷。")
-    await get_api(api=api, msg=msg)
-
 
 """
 data/command.yml
@@ -48,26 +27,6 @@ async def tg(_: Client, msg: Message):
     # api = 'http://ovooa.com/API/tgrj/api.php'
     api = 'https://www.xzccc.com/api/dog/'
     await msg.edit_text(f"{symbol}正在准备开舔。")
-    await get_api(api=api, msg=msg)
-
-
-"""
-data/command.yml
-
-kfc:
-  cmd: kfc
-  format: -kfc
-  usage: 疯狂星期四文案
-
-"""
-
-
-@Client.on_message(command('kfc'))
-async def kfc(_: Client, msg: Message):
-    """肯德基"""
-    symbol = 'vm50ing... '
-    api = 'https://kfc-crazy-thursday.vercel.app/api/index'
-    await msg.edit_text(f"正在准备{symbol}。")
     await get_api(api=api, msg=msg)
 
 
