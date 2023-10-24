@@ -22,7 +22,9 @@ async def helper(_: Client, msg: Message):
     data = CMDS_DATA
     cmd_alias = dict(zip((v.get('cmd') for v in data.values()), data.keys()))
     if not cmd:
-        tmp = '、'.join(f"`{k}`" for k in data.keys())
+        # 对指令进行排序
+        cmd_sorted = sorted([c for c in data.keys()])
+        tmp = '、'.join(f"`{k}`" for k in cmd_sorted)
         text = f"📢 **指令列表：**\n{tmp}\n\n**发送** `{helper_cmd} " \
                f"<{cmd if cmd else 'cmd'}>` **查看某指令的详细用法**"
     elif not data.get(cmd) and cmd not in cmd_alias:
