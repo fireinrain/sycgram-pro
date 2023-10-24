@@ -259,3 +259,8 @@ jupai:
   cmd: jupai
   format: -jupai <文本>
   usage: 输入文字生成举牌小人图
+
+pypi:
+  cmd: pypi
+  format: -pypi <python包关键字>
+  usage: 搜索PyPi packages
