@@ -57,6 +57,7 @@ ipcheck:
 """
 
 
+# TODO fix error
 @Client.on_message(command("ipcheck"))
 async def ip_checker(_: Client, msg: Message):
     """检测IP或者域名是否被阻断"""

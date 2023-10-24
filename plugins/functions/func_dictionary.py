@@ -19,4 +19,4 @@ async def dictionary(_: Client, msg: Message):
     symbol = 'vm50ing... '
     api = 'https://kfc-crazy-thursday.vercel.app/api/index'
     await msg.edit_text(f"正在准备{symbol}。")
-    # TODO 完成插件
+    # TODO finish me
