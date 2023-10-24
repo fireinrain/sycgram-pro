@@ -12,7 +12,7 @@ from .sessions import session
 async def google_search(content: str) -> Dict[str, str]:
     result: Dict[str, str] = {}
     async with session.get(
-        f"https://www.google.com/search?q={parse.quote(content)}", timeout=9.9
+            f"https://www.google.com/search?q={parse.quote(content)}", timeout=9.9
     ) as resp:
         if resp.status == 200:
             soup = BeautifulSoup(await resp.text(), 'lxml')
@@ -29,27 +29,21 @@ async def google_search(content: str) -> Dict[str, str]:
 
 async def check_ip(ip: str) -> Dict[str, Any]:
     # ------------- ip check --------------
-    url = "https://www.vps234.com"
+    url = "https://www.toolsdaquan.com/toolapi/public/ipchecking"
     headers = {
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36",
-        'origin': url,
-        'referer': f'{url}/ipchecker/',
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36",
+        'referer': 'https://www.toolsdaquan.com/ipcheck/',
         'x-requested-with': 'XMLHttpRequest'
     }
 
-    async with session.post(
-        f"{url}/ipcheck/getdata/",
-        data={
-            'idName': f'itemblockid{int(round(time() * 1000))}',
-            'ip': ip,
-        },
-        headers=headers
-    ) as resp:
+    async with session.post(f"{url}/{ip}/{80}", headers=headers) as resp:
         if resp.status == 200:
-            return await resp.json()
-
-        resp.raise_for_status()
+            # inner_data = await resp.json()
+            inner_data = json.loads(await resp.text())
+            return inner_data
+        else:
+            resp.raise_for_status()
 
 
 async def check_ip_port(ip: str, port: str) -> Dict[str, str]:
@@ -57,7 +51,7 @@ async def check_ip_port(ip: str, port: str) -> Dict[str, str]:
     url = "https://www.toolsdaquan.com/toolapi/public/ipchecking"
     headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36",
+                      "(KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36",
         'referer': 'https://www.toolsdaquan.com/ipcheck/',
         'x-requested-with': 'XMLHttpRequest'
     }
