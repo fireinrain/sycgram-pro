@@ -5,8 +5,12 @@ services:
     container_name: sycgram-pro
     network_mode: host
     volumes:
-      #- ./data:/sycgram/data
+      - ./data:/sycgram/data
       - ./data/config.ini:/sycgram-pro/data/config.ini
 
 # issue: 登录tg需要输入手机号码 在python库中使用input接收
 # 但是在compose环境下 无法主动输入
+
+# 解决方法: 先试用docker run 模式完成手机号和验证码的输入
+# 等到完成登录后 也就是获取到session后，data文件夹中有session文件
+# 直接退出 就可以用docker compose的方式启动和管理了
