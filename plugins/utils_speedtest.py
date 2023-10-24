@@ -71,3 +71,14 @@ async def speedtest(_: Client, msg: Message):
         await msg.reply_photo(photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
     except Exception as e:
         await show_exception(msg, e)
+
+
+def unit_convert(byte):
+    """Converts byte into readable formats."""
+    power = 1024
+    zero = 0
+    units = {0: "", 1: "Kb/s", 2: "Mb/s", 3: "Gb/s", 4: "Tb/s"}
+    while byte > power:
+        byte /= power
+        zero += 1
+    return f"{round(byte, 2)} {units[zero]}"
