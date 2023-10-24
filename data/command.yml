@@ -269,3 +269,8 @@ premium:
   cmd: prem
   format: -prem <无|force>
   usage: 列出本群的大会员占比,并展示分遗产比例
+
+atadmin:
+  cmd: atadm
+  format: -atadm <消息内容|all 消息内容|random 消息内容>
+  usage: 一键发送消息@本群管理员(仅在群组中有效), 无参数则默认第一位管理员,all参数发送给所有管理员,random表示随机一位管理员

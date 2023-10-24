@@ -23,6 +23,15 @@ def escape_definition(definition):
     return definition
 
 
+"""
+data/command.yml
+
+pypi:
+  cmd: pypi
+  format: -pypi <python包关键字>
+  usage: 搜索PyPi packages
+"""
+
 @Client.on_message(command("pypi"))
 async def pypi_search(client: Client, message: Message):
     cmd, args = Parameters.get(message)

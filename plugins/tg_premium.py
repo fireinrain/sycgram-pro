@@ -5,6 +5,16 @@ from pyrogram.types import Message
 from core import command
 from tools.helpers import Parameters
 
+"""
+data/command.yml
+
+premium:
+  cmd: prem
+  format: -prem <无|force>
+  usage: 列出本群的大会员占比,并展示分遗产比例
+
+"""
+
 
 @Client.on_message(command("premium"))
 async def premium(client: Client, message: Message):
