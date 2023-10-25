@@ -1,7 +1,7 @@
 import asyncio
 import re
 from typing import Any, Dict, List, Tuple, Union
-import os 
+import os
 from bs4 import BeautifulSoup
 from core.custom import CMDS_PREFIX
 from loguru import logger
@@ -11,8 +11,10 @@ from pyrogram.types import Message, User
 
 from .constants import STICKER_DESCRIP, SYCGRAM_ERROR, SYCGRAM_INFO
 from .sessions import session
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
 from configparser import ConfigParser
+
+
 class Parameters:
     @classmethod
     def get(cls, msg: Message) -> Tuple[str]:
@@ -117,7 +119,7 @@ async def check_if_package_existed(pkg_name: str) -> bool:
         bool: `True`为贴纸包存在，`False`为贴纸包不存在
     """
     async with session.get(
-        f'https://t.me/addstickers/{pkg_name}', timeout=9.9,
+            f'https://t.me/addstickers/{pkg_name}', timeout=9.9,
     ) as resp:
         if resp.status == 200:
             soup = BeautifulSoup(await resp.text(), 'lxml')
@@ -131,10 +133,10 @@ async def check_if_package_existed(pkg_name: str) -> bool:
 
 
 async def emoji_sender(
-    cli: Client,
-    chat_id: Union[int, str],
-    msg_id: int,
-    emoji: str = '',
+        cli: Client,
+        chat_id: Union[int, str],
+        msg_id: int,
+        emoji: str = '',
 ) -> bool:
     try:
         await cli.send_reaction(chat_id, msg_id, emoji)
@@ -212,9 +214,13 @@ def escape_markdown(text: str, version: int = 1, entity_type: str = None) -> str
 
 class BotConfigParser:
     def __init__(self, config_path: str = os.path.join(os.getcwd(), "data/config.ini")):
-        self._config_path = config_path
+        if not os.path.exists(config_path):
+            logger.warning("Config file does not exist, use the config.ini.example as default.")
+            logger.warning("Do not forget to create your own config.ini instead of config.ini.example")
+            self._config_path = os.path.join(os.getcwd(), "data/config.ini.example")
+        else:
+            self._config_path = config_path
         self.config = ConfigParser()
-
 
     def config_read(self):
         try:

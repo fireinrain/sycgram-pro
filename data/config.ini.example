@@ -1,0 +1,5 @@
+[pyrogram]
+api_id=xxxxxx
+api_hash=xxxxxxxxxxxxxxxx
+[plugins]
+root=plugins
