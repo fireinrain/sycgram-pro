@@ -53,7 +53,7 @@ async def bingwall(client: Client, message: Message):
                                 if not chunk:
                                     break
                                 await file.write(chunk)
-                        if not args:
+                        if args == "o":
                             await message.reply_document(
                                 filename,
                                 caption=f"#bing wallpaper\n" f"{str(copy_right)}",
