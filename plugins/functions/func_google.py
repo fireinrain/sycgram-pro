@@ -1,7 +1,5 @@
 import asyncio
 import re
-
-from loguru import logger
 from pyrogram import Client
 from pyrogram.enums import ParseMode
 from pyrogram.errors import FloodWait
@@ -9,8 +7,12 @@ from pyrogram.types import Message
 
 from core import command
 from tools.helpers import Parameters, show_cmd_tip, show_exception
-from tools.poster import google_search
+from typing import Any, Dict
+from urllib import parse
+from tools.sessions import session
 
+from bs4 import BeautifulSoup
+from loguru import logger
 """
 data/command.yml
 
@@ -57,3 +59,21 @@ async def google(_: Client, msg: Message):
         await show_exception(msg, "无法连接到谷歌")
     finally:
         await logger.complete()
+
+
+async def google_search(content: str) -> Dict[str, str]:
+    result: Dict[str, str] = {}
+    async with session.get(
+            f"https://www.google.com/search?q={parse.quote(content)}", timeout=9.9
+    ) as resp:
+        if resp.status == 200:
+            soup = BeautifulSoup(await resp.text(), 'lxml')
+            for p in soup.find_all('h3'):
+                if p.parent.has_attr('href'):
+                    result[p.text] = p.parent.attrs.get('href')
+                    logger.info(f"Google | Searching | {result[p.text]}")
+                    if len(result) > 10:
+                        break
+            return result
+
+        resp.raise_for_status()
