@@ -36,6 +36,9 @@ async def helper(_: Client, msg: Message):
         text = f"格式：`{data.get(key).get('format')}`\n" \
                f"用法：`{data.get(key).get('usage')}`"
     await msg.edit_text(text, parse_mode=ParseMode.MARKDOWN)
+    # 60s后自动删除
+    await asyncio.sleep(120)
+    await msg.delete()
 
 
 @Client.on_message(command('pingbot'))
