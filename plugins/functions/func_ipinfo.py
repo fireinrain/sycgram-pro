@@ -143,10 +143,10 @@ async def process_check_data(opt: int, resp: Dict[str, Any]) -> str:
         in_tcp = "✅" if _data.get('tcp') == 'success' else "❌"
         out_icmp = "✅" if _data.get('outside_icmp') == 'success' else "❌"
         out_tcp = "✅" if _data.get('outside_tcp') == 'success' else "❌"
-        return f"```ICMP：{in_icmp}\n" \
+        return f"ICMP：{in_icmp}\n" \
                f"TCP： {in_tcp}\n" \
                f"Outside ICMP：{out_icmp}\n" \
-               f"Outside TCP： {out_tcp}```"
+               f"Outside TCP： {out_tcp}"
 
     # 检测ip端口
     elif opt == 2:
@@ -155,7 +155,7 @@ async def process_check_data(opt: int, resp: Dict[str, Any]) -> str:
         in_tcp = "✅" if _data.get('tcp') == 'success' else "❌"
         out_icmp = "✅" if _data.get('outside_icmp') == 'success' else "❌"
         out_tcp = "✅" if _data.get('outside_tcp') == 'success' else "❌"
-        return f"```ICMP：{in_icmp}\n" \
+        return f"ICMP：{in_icmp}\n" \
                f"TCP： {in_tcp}\n" \
                f"Outside ICMP：{out_icmp}\n" \
-               f"Outside TCP： {out_tcp}```"
+               f"Outside TCP： {out_tcp}"
