@@ -47,7 +47,7 @@ async def bingwall(client: Client, message: Message):
                 img = await session.get(image_url, timeout=5.5)
             else:
                 continue
-            if img.status_code == 200:
+            if img.status == 200:
                 with open(filename, "wb") as f:
                     f.write(img.content)
                 if not args:
