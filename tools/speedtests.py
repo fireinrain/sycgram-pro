@@ -86,23 +86,23 @@ class Speedtester:
 
     # 获取上传流量
     def get_upload_bandwith(self) -> str:
-        bytes_send = self.__output.get('bytes_sent')
+        bytes_send = self.__output.get('upload').get('bytes')
         bytes_send_info = convert_bytes(int(bytes_send))
         return f"`{bytes_send_info}`"
 
     # 获取下载流量
     def get_download_bandwith(self) -> str:
-        bytes_received = self.__output.get('bytes_received')
+        bytes_received = self.__output.get('download').get('bytes')
         bytes_received_info = convert_bytes(int(bytes_received))
         return f"`{bytes_received_info}`"
 
     # 本次测速消耗总流量
     def get_total_bandwithcost(self) -> str:
-        bytes_send = self.__output.get('bytes_sent')
-        bytes_received = self.__output.get('bytes_received')
+        bytes_send = self.__output.get('upload').get('bytes')
+        bytes_received = self.__output.get('download').get('bytes')
         by_send = int(bytes_send)
         by_re = int(bytes_received)
-        s = convert_bytes(bytes_send + by_re)
+        s = convert_bytes(by_send + by_re)
         return f"`{s}`"
 
     def get_speed(self, opt: str) -> str:
