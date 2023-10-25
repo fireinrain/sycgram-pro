@@ -119,8 +119,22 @@ reinstall_sycgram_pro(){
 
 install_sycgram_pro(){
 
-    printf "请输入 sycgram-pro 容器的名称："
-    read -r container_name <&1
+    # 设置默认容器名称
+    default_container_name="sycgram-pro"
+
+    # 提示用户输入容器名称
+    printf "请输入 sycgram-pro 容器的名称 [默认为$default_container_name]: "
+
+    # 使用 read 命令读取用户输入，如果用户未输入则使用默认值
+    read -r container_name
+
+    # 如果用户未输入任何内容，则使用默认值
+    if [ -z "$container_name" ]; then
+        container_name="$default_container_name"
+    fi
+
+    #printf "请输入 sycgram-pro 容器的名称："
+    #read -r container_name <&1
 
     pre_check;
     check_and_create_config;
