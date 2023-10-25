@@ -3,7 +3,7 @@ import contextlib
 import os
 import secrets
 from os import sep
-
+import aiofiles
 from pyrogram import Client
 from pyrogram.types import Message
 
@@ -47,8 +47,12 @@ async def bingwall(client: Client, message: Message):
             if image_url != " ":
                 async with session.get(image_url) as response:
                     if response.status == 200:
-                        with open(filename, "wb") as f:
-                            f.write(response.content)
+                        async with aiofiles.open(filename, mode='wb') as file:
+                            while True:
+                                chunk = await response.content.read(1024)
+                                if not chunk:
+                                    break
+                                await file.write(chunk)
                         if not args:
                             await message.reply_document(
                                 filename,
