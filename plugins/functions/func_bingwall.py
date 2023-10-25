@@ -1,3 +1,4 @@
+import asyncio
 import contextlib
 import os
 import secrets
@@ -44,34 +45,36 @@ async def bingwall(client: Client, message: Message):
         image_url = f"https://www.bing.com{url}"
         try:
             if image_url != " ":
-                img = await session.get(image_url, timeout=5.5)
+                async with session.get(image_url) as response:
+                    if response.status == 200:
+                        with open(filename, "wb") as f:
+                            f.write(response.content)
+                        if not args:
+                            await message.reply_document(
+                                filename,
+                                caption=f"#bing wallpaper\n" f"{str(copy_right)}",
+                                quote=False,
+                                reply_to_message_id=message.reply_to_top_message_id,
+                            )
+                        else:
+                            await message.reply_photo(
+                                filename,
+                                caption=f"#bing wallpaper\n" f"{str(copy_right)}",
+                                quote=False,
+                                reply_to_message_id=message.reply_to_top_message_id,
+                            )
+                        status = True
+                        break  # 成功了就赶紧结束啦！
             else:
                 continue
-            if img.status == 200:
-                with open(filename, "wb") as f:
-                    f.write(img.content)
-                if not args:
-                    await message.reply_document(
-                        filename,
-                        caption=f"#bing wallpaper\n" f"{str(copy_right)}",
-                        quote=False,
-                        reply_to_message_id=message.reply_to_top_message_id,
-                    )
-                else:
-                    await message.reply_photo(
-                        filename,
-                        caption=f"#bing wallpaper\n" f"{str(copy_right)}",
-                        quote=False,
-                        reply_to_message_id=message.reply_to_top_message_id,
-                    )
-                status = True
-                break  # 成功了就赶紧结束啦！
+
         except Exception as e:
             continue
     safe_remove(filename)
     if not status:
-        return await message.edit_text("出错了😭😭😭 ~ 试了好多好多次都无法访问到服务器")
-    await message.delete()
+        await message.edit_text("出错了😭😭😭 ~ 试了好多好多次都无法访问到服务器")
+        await asyncio.sleep(5)
+        await message.delete()
 
 
 def safe_remove(name: str) -> None:
