@@ -65,7 +65,7 @@ async def ip_checker(_: Client, msg: Message):
     """检测IP或者域名是否被阻断"""
     cmd, args = Parameters.get_more(msg)
     args_size = len(args)
-    await msg.edit_text("正在检测IP/域名，请稍后...")
+    await msg.edit_text(f"正在检测IP/域名: `{''.join(args)}`，请稍后...")
     if args_size == 1:
         try:
             resp = await check_ip(args[0])
