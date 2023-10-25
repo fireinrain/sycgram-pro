@@ -34,7 +34,7 @@ ingwall:
 
 
 @Client.on_message(command("bingwall"))
-async def bingwall(message: Message):
+async def bingwall(client: Client, message: Message):
     cmd, args = Parameters.get(message)
     status = False
     filename = f"data{sep}wallpaper.jpg"
