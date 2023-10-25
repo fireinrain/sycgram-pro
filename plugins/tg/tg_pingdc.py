@@ -31,9 +31,9 @@ async def pingdc(_: Client, msg: Message):
         data.append(output.replace('\n', '') if output else '-1')
 
     await msg.edit_text(
-        f"🇺🇸 DC1(迈阿密)/{DCs[1]}: `{data[0]}`\n"
-        f"🇳🇱 DC2(阿姆斯特丹)/{DCs[2]}: `{data[1]}`\n"
-        f"🇺🇸 DC3(迈阿密)/{DCs[3]}: `{data[2]}`\n"
-        f"🇳🇱 DC4(阿姆斯特丹)/{DCs[4]}: `{data[3]}`\n"
-        f"🇸🇬 DC5(新加坡)/{DCs[5]}: `{data[4]}`", ParseMode.MARKDOWN
+        f"🇺🇸 DC1(迈阿密)|`{DCs[1]}`: `{data[0]}`\n"
+        f"🇳🇱 DC2(阿姆斯特丹)|`{DCs[2]}`: `{data[1]}`\n"
+        f"🇺🇸 DC3(迈阿密)|`{DCs[3]}`: `{data[2]}`\n"
+        f"🇳🇱 DC4(阿姆斯特丹)|`{DCs[4]}`: `{data[3]}`\n"
+        f"🇸🇬 DC5(新加坡)|`{DCs[5]}`: `{data[4]}`", ParseMode.MARKDOWN
     )
