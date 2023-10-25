@@ -16,7 +16,7 @@ async def get_wallpaper_url(num):
     req = await session.get(json_url, timeout=5.5)
     url = ""
     copy_right = ""
-    if req.status_code == 200:
+    if req.status == 200:
         data = req.json()
         url = data["images"][0]["url"]
         copy_right = data["images"][0]["copyright"]
