@@ -78,7 +78,7 @@ async def bingwall(client: Client, message: Message):
     if not status:
         await message.edit_text("出错了😭😭😭 ~ 试了好多好多次都无法访问到服务器")
         await asyncio.sleep(5)
-        await message.delete()
+    await message.delete()
 
 
 def safe_remove(name: str) -> None:
