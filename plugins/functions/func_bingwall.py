@@ -11,16 +11,16 @@ from tools.helpers import Parameters
 from tools.sessions import session
 
 
-async def get_wallpaper_url(num):
+async def get_wallpaper_url(num) -> (str, str):
     json_url = f"https://www.bing.com/HPImageArchive.aspx?format=js&mkt=zh-CN&n=1&idx={str(num)}"
-    req = await session.get(json_url, timeout=5.5)
-    url = ""
-    copy_right = ""
-    if req.status == 200:
-        data = req.json()
-        url = data["images"][0]["url"]
-        copy_right = data["images"][0]["copyright"]
-    return url, copy_right
+    async with session.get(json_url) as response:
+        url = ""
+        copy_right = ""
+        if response.status == 200:
+            data = await response.json()
+            url = data["images"][0]["url"]
+            copy_right = data["images"][0]["copyright"]
+        return url, copy_right
 
 
 """
