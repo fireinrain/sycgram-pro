@@ -1,3 +1,5 @@
+import asyncio
+
 from loguru import logger
 from pyrogram import Client
 from pyrogram.types import Message
@@ -63,6 +65,11 @@ async def ip_checker(_: Client, msg: Message):
     """检测IP或者域名是否被阻断"""
     cmd, args = Parameters.get_more(msg)
     args_size = len(args)
+    if not args:
+        await msg.edit_text(f"请输入正确的指令参数!")
+        await asyncio.sleep(5)
+    else:
+        await msg.edit_text("正在IP检测，请稍后...")
     if args_size == 1:
         try:
             resp = await check_ip(args[0])
