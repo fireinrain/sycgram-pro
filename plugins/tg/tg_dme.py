@@ -24,6 +24,10 @@ delme:
 async def dme(client: Client, message: Message):
     """删除指令数量的消息"""
     cmd, limit = Parameters.get_int(message, max_num=1500)
+    # 设置默认为2
+    # 也就是删除指令消息 和上一条自己的消息
+    if limit == 1:
+        limit = 2
     counter, ids_deleted = 0, []
     await message.edit_text("🧹`正在删除历史消息...`")
     start = time.time()
