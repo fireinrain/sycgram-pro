@@ -36,6 +36,7 @@ ingwall:
 
 @Client.on_message(command("bingwall"))
 async def bingwall(client: Client, message: Message):
+    await message.edit_text("🖼 正在获取每日bing壁纸...")
     cmd, args = Parameters.get(message)
     status = False
     filename = f"data{sep}wallpaper.jpg"
