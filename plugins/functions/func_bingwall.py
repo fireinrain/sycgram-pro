@@ -1,6 +1,7 @@
 import asyncio
 import contextlib
 import os
+import random
 import secrets
 from os import sep
 import aiofiles
@@ -11,9 +12,22 @@ from core import command
 from tools.helpers import Parameters
 from tools.sessions import session
 
+Regions = ["en-US",
+           "zh-CN",
+           "ja-JP",
+           "en-AU",
+           "en-GB",
+           "de-DE",
+           "en-NZ",
+           "en-CA",
+           "en-IN",
+           "fr-FR",
+           "fr-CA", ]
+
 
 async def get_wallpaper_url(num) -> (str, str):
-    json_url = f"https://www.bing.com/HPImageArchive.aspx?format=js&mkt=zh-CN&n=1&idx={str(num)}"
+    mkt = random.choice(Regions)
+    json_url = f"https://www.bing.com/HPImageArchive.aspx?format=js&mkt={mkt}&n=1&idx={str(num)}"
     async with session.get(json_url) as response:
         url = ""
         copy_right = ""
