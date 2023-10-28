@@ -64,36 +64,12 @@ async def google(_: Client, msg: Message):
 
 async def google_search(content: str) -> Dict[str, str]:
     headers = {
-        ':authority': 'www.google.com',
-        ':method': 'GET',
-        ':path': f'/search?q={parse.quote(content)}',
-        ':scheme': 'https',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,'
                   'application/signed-exchange;v=b3;q=0.7',
         'Accept-Encoding': 'gzip',
         'Accept-Language': 'zh',
         'Cache-Control': 'max-age=0',
-        'Cookie': '1P_JAR=2023-10-28-12; AEC=Ackid1SN7i9J3dZcwxyzkbZfDQBpUC4YtTPwKCxRb_V6Eyqsm5PY79giOW4; '
-                  'NID=511=upOqyQ4k6E_hJoR2-V-HBOYkcLYlgDfWtdjiZpUxYonAsWftVBTIP07kx7HNwG6DH7q'
-                  '-ob0sct2sGOizZ80Bgz60gqk03Sv4-sRCusN2V4tHbAY1AQZ8CWHB1tBs7iQkSlBH5LaUXLum106bWyfHVCIBK5TARWIkak'
-                  '-Anm3l0RU; GOOGLE_ABUSE_EXEMPTION=ID=b5204ae728d51923:TM=1698494614:C=r:IP=155.248.202.15-:S'
-                  '=6KQTfyBrILCKds7WmrVxaes',
         'Referer': 'https://www.google.com',
-        'Sec-Ch-Ua': '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
-        'Sec-Ch-Ua-Arch': 'x86',
-        'Sec-Ch-Ua-Bitness': '64',
-        'Sec-Ch-Ua-Full-Version-List': '"Chromium";v="118.0.5993.88", "Google Chrome";v="118.0.5993.88", '
-                                       '"Not=A?Brand";v="99.0.0.0"',
-        'Sec-Ch-Ua-Mobile': '?0',
-        'Sec-Ch-Ua-Model': '""',
-        'Sec-Ch-Ua-Platform': 'macOS',
-        'Sec-Ch-Ua-Platform-Version': '12.5.1',
-        'Sec-Ch-Ua-Wow64': '?0',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'same-origin',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
                       'Chrome/118.0.0.0 Safari/537.36',
 
