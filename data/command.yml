@@ -12,66 +12,79 @@ help:
   cmd: h
   format: -help <command>
   usage: 指令列表
+  wait_prompt: 正在执行命令, 请稍后...
 
 note:
   cmd: note
   format: -note <save|del> <序号> or -note <序号|list|clear>
   usage: 回复一条消息，根据序号保存/删除该消息文本
+  wait_prompt: 正在执行命令, 请稍后...
 
 delme:
   cmd: dme
   format: -dme <数量>
   usage: 直接使用。批量删除消息, 范围：1 ~ 1500，默认：1
+  wait_prompt: 正在执行命令, 请稍后...
 
 forward:
   cmd: fwd
   format: -fwd <数量>
   usage: 回复一条消息，转发该消息n次。范围：1 ~ 30， 默认：1
+  wait_prompt: 正在执行命令, 请稍后...
 
 cpme:
   cmd: cpme
   format: -cpme <数量>
   usage: 回复一条消息，无引用转发该消息n次。范围：1 ~ 30， 默认：1
+  wait_prompt: 正在执行命令, 请稍后...
 
 ghost:
   cmd: ghost
   format: -ghost <status|list>
   usage: 直接使用。开启ghost的对话会被自动标记为已读
+  wait_prompt: 正在执行命令, 请稍后...
 
 idme:
   cmd: idme
   format: -idme
   usage: 回复一条消息或直接使用，查看对话及消息的ID
+  wait_prompt: 正在执行命令, 请稍后...
 
 nosee:
   cmd: nosee
   format: -nosee
   usage: 回复一条消息，将在所有共同且拥有管理踢人权限的群组中踢出目标消息的主人
+  wait_prompt: 正在执行命令, 请稍后...
 
 dc:
   cmd: dc
   format: -dc
   usage: 回复一条消息，或者直接使用。查看目标消息或当前对话的DC区
+  wait_prompt: 正在执行命令, 请稍后...
 
 pingdc:
   cmd: pdc
   format: -pingdc
   usage: 测试与各个DC的延时
+  wait_prompt: 正在执行命令, 请稍后...
 
 exchange:
   cmd: exc
   format: -exc <数字> <FROM> <TO>
   usage: 汇率转换,-exc 1 usd rmb
+  wait_prompt: 正在执行命令, 请稍后...
 
 google:
   cmd: gg
   format: -gg <无|搜索内容>
   usage: 回复一条消息，或直接使用
+  wait_prompt: 正在执行命令, 请稍后...
 
 speedtest:
   cmd: spdt
   format: -spdt <无|节点ID|list|update>
   usage: 服务器本地网络测速
+  wait_prompt: 正在执行命令, 请稍后...
 
 sticker:
   cmd: stck
@@ -79,134 +92,160 @@ sticker:
   usage:
     收集回复的贴纸/图片/图片文件消息。直接使用时，可以设置默认贴纸包标题&名字；
     回复使用时，可以指定emoji，不指定则使用默认emoji
+  wait_prompt: 正在执行命令, 请稍后...
 
 trace:
   cmd: trace
   format: -trace <emoji|clear|list>
   usage: 回复一条消息，当目标消息的主人发消息时，自动丢<emoji>，默认：💩。直接使用，清除所有trace目标（或展示trace名单）
+  wait_prompt: 正在执行命令, 请稍后...
 
 ccattack:
   cmd: cc
   format: -cc <数量> or -cc <emoji|set>
   usage: 回复使用：遍历该消息的主人发过的消息并丢<数量>个<emoji>给Ta；直接使用：
     指令<emoji>为默认emoji，若参数为set，则设置随机emoji。数量范围：1 ~ 233，Emoji默认为：💩
+  wait_prompt: 正在执行命令, 请稍后...
 
 calculator:
   cmd: cal
   format: -cal <四则运算式>
   usage: 直接使用。默认除法精确到小数点后4位
+  wait_prompt: 正在执行命令, 请稍后...
 
 basecon:
   cmd: bsc
   format: -bsc <进制(数字)> <数值>
   usage: 进制转换, bsc 2 99(将99转换为2进制)
+  wait_prompt: 正在执行命令, 请稍后...
 
 shell:
   cmd: sh
   format: -sh <shell脚本>
   usage: 直接使用
+  wait_prompt: 正在执行命令, 请稍后...
 
 sysinfo:
   cmd: sys
   format: -sys
   usage: 直接使用，查看当前运行环境系统信息
+  wait_prompt: 正在执行命令, 请稍后...
 
 diss:
   cmd: diss
   format: -diss
   usage: 喷子语录
+  wait_prompt: 正在执行命令, 请稍后...
 
 tiandog:
   cmd: tdog
   format: -tdog
   usage: 舔狗语录
+  wait_prompt: 正在执行命令, 请稍后...
 
 archive:
   cmd: arch
   format: -arch
   usage: 归档当前对话
+  wait_prompt: 正在执行命令, 请稍后...
 
 unarchive:
   cmd: unarch
   format: -unarch
   usage: 撤销归档当前对话
+  wait_prompt: 正在执行命令, 请稍后...
 
 restart:
   cmd: restart
   format: -restart
   usage: 重启sycgram
+  wait_prompt: 正在执行命令, 请稍后...
 
 update:
   cmd: update
   format: -update <无|force>
   usage: 更新配置文件和sycgram到主分支的最新版本
+  wait_prompt: 正在执行命令, 请稍后...
 
 cmdprefix:
   cmd: cmdprefix
   format: -cmdprefix <符号|reset>
   usage: 修改所有指令的前缀。当参数为reset时，恢复command.yml的所有默认参数
+  wait_prompt: 正在执行命令, 请稍后...
 
 cmdalias:
   cmd: cmdalias
   format: -cmdalias <set> <source> <to> or -alias <reset> <source> or -alias <list>
   usage: 修改指令别名
+  wait_prompt: 正在执行命令, 请稍后...
 
 transfer:
   cmd: trsf
   format: -trsf <up|down> <文件路径(相对于机器人来说)>|<无|文件路径>
   usage: 上传容器内文件至当前对话(-trsf up xxxxx),回复一条文件/视频/图片/音乐等可下载的消息。如无指定文件路径，则默认存放至data目录(-trsf down 无|指定下载路径)
+  wait_prompt: 正在执行命令, 请稍后...
 
 ip:
   cmd: ip
   format: -ip <IP地址|域名|me>
   usage: 查询IP地址或域名的信息
+  wait_prompt: 正在执行命令, 请稍后...
 
 ipcheck:
   cmd: ipc
   format: -ipcheck <IP|域名> <端口|无>
   usage: 无端口参数时，查询IP或域名是否被阻断；有则查询端口是否开启
+  wait_prompt: 正在执行命令, 请稍后...
 
 bitcoin:
   cmd: btcn
   format: -btcn <num> <from coin type> <to coin type>
   usage: 加密货币转换 -btcn 1000 jpy usd
+  wait_prompt: 正在执行命令, 请稍后...
 
 tts:
   cmd: tts
   format: -tts <文字>
   usage: tts AI 语音转换,-tts list zh 模糊搜索列出含有zh字符的语音模型, -tts set zh-CN-YunfengNeural 使用zh-CN-YunfengNeural语音模型
+  wait_prompt: 正在执行命令, 请稍后...
 
 
 kfc:
   cmd: kfc
   format: -kfc
   usage: 疯狂星期四文案
+  wait_prompt: 正在执行命令, 请稍后...
 
 bye:
   cmd: bye
   format: -bye
   usage: 删除当前对话的消息（仅私人聊天）
+  wait_prompt: 正在执行命令, 请稍后...
 
 quotes:
   cmd: quot
   format: -quot <消息数量>
   usage: 回复一条消息以生成语录,未指定消息数量则默认为1
+  wait_prompt: 正在执行命令, 请稍后...
 
 fakeq:
   cmd: fakeq
   format: -fakeq <虚假的内容>
   usage: 回复一条消息并加上内容以生成虚假语录
+  wait_prompt: 正在执行命令, 请稍后...
 
 # 独家开发的插件
 histoday:
   cmd: histd
   format: -histd <无>
   usage: 生成历史上的今天摘要
+  wait_prompt: 正在执行命令, 请稍后...
 
 pingbot:
   cmd: pingbot
   format: -pingbot <无>
   usage: 检查机器人是否在线
+  wait_prompt: 正在执行命令, 请稍后...
 
 
 # 移植PagerMaid-Pyro 插件
@@ -214,73 +253,88 @@ pingbot:
   cmd: 1a2b
   format: -1a2b <start|stop|answer|numbers-you-give>
   usage: 猜数字游戏
+  wait_prompt: 正在执行命令, 请稍后...
 
 abstract:
   cmd: abs
   format: -abs <想要抽象的文字>
   usage: 抽象你的文字(使用emoji翻译你的文字)
+  wait_prompt: 正在执行命令, 请稍后...
 
 bingwall:
   cmd: bgw
   format: -bgw <无|o>
   usage: 每日bing wallpaper壁纸,o参数发送原图
+  wait_prompt: 正在执行命令, 请稍后...
 
 base64:
   cmd: base64
   format: -base64 <e|d> <text>
   usage: 使用base64 编解码文字内容
+  wait_prompt: 正在执行命令, 请稍后...
 
 credit:
   cmd: crt
   format: -crt <bin码(4-8位数字)>
   usage: 查询信用卡简略信息
+  wait_prompt: 正在执行命令, 请稍后...
 
 runcode:
   cmd: runcode
   format: -runcode <编程语言名> <代码>
   usage: 在线运行代码并展示结果
+  wait_prompt: 正在执行命令, 请稍后...
 
 dictionary:
   cmd: dict
   format: -dict <enzh|zhen> <单词或文字>
   usage: 在线英汉-汉英字典服务
+  wait_prompt: 正在执行命令, 请稍后...
 
 epic:
   cmd: epic
   format: -epic <无>
   usage: 获取Epic Games喜加一限免
+  wait_prompt: 正在执行命令, 请稍后...
 
 whois:
   cmd: whois
   format: -whois <域名>
   usage: 查看域名是否已被注册、注册日期、过期日期、域名状态、DNS解析服务器等。
+  wait_prompt: 正在执行命令, 请稍后...
 
 jupai:
   cmd: jupai
   format: -jupai <文本>
   usage: 输入文字生成举牌小人图
+  wait_prompt: 正在执行命令, 请稍后...
 
 pypi:
   cmd: pypi
   format: -pypi <python包关键字>
   usage: 搜索PyPi packages
+  wait_prompt: 正在执行命令, 请稍后...
 
 premium:
   cmd: prem
   format: -prem <无|force>
   usage: 列出本群的大会员占比,并展示分遗产比例
+  wait_prompt: 正在执行命令, 请稍后...
 
 atadmin:
   cmd: atadm
   format: -atadm <无|all|random> <消息内容>
   usage: 一键发送消息@本群管理员(仅在群组中有效), 无参数则默认第一位管理员,all参数发送给所有管理员,random表示随机一位管理员
+  wait_prompt: 正在执行命令, 请稍后...
 
 tgsession:
   cmd: tgsess
   format: -tgsess <query|logout> <标识符>
   usage: 查询/注销已登录的Telegram会话
+  wait_prompt: 正在执行命令, 请稍后...
 
 iptrace:
   cmd: iptrace
   format: -iptrace <back/best>
   usage: 主机回程路由测试(back 运行backtrace,best 运行besttrace)
+  wait_prompt: 正在执行命令, 请稍后...
