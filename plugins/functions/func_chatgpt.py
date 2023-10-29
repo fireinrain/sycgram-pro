@@ -1,4 +1,5 @@
 import asyncio
+import json
 
 import aiohttp
 from pyrogram import Client
@@ -19,16 +20,19 @@ def get_access_token() -> str:
     return bot_config['chatgpt'].get('access_token')
 
 
-async def fakeopen_completions_chat(query: str, max: int, stream_true: bool, tem: float):
-    json_data = {
-        "model": 'gpt-3.5-turbo',
+async def fakeopen_completions_chat(query: str, stream_true: bool):
+    params = {
+        "model": "gpt-3.5-turbo",
         "messages": [
-            {'role': 'user', 'content': query}
-        ],
-        "temperature": tem,
-        "max_tokens": max,
-        "stream": stream_true  # 开启流式输出
+            {
+                "role": "user",
+                "content": f"{query}"
+            }
+        ]
+        ,
+        'stream': stream_true,
     }
+    json_data = json.dumps(params)
     headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + get_access_token(),
@@ -36,7 +40,7 @@ async def fakeopen_completions_chat(query: str, max: int, stream_true: bool, tem
                       'Chrome/118.0.0.0 Safari/537.36'
     }
     async with aiohttp.ClientSession() as session:
-        async with session.post(fakeopen_completions_url, headers=headers, data=json_data) as response:
+        async with session.post(fakeopen_completions_url, data=json_data, headers=headers) as response:
             if response.status == 200:
                 # 使用iter_any()方法逐块读取流式数据
                 result = ""
@@ -95,7 +99,7 @@ async def chatgpt(client: Client, message: Message):
     cmd, args = Parameters.get(message)
     query_str = args
     await message.edit_text("🌍正在询问chatgpt,请稍后...")
-    full_result = await fakeopen_completions_chat(query_str, 5000, True, 0.8)
+    full_result = await fakeopen_completions_chat(query_str, True)
     if not full_result:
         full_result = "无法获取chatgpt回复,请检查插件是否正常工作."
     result_text = f"🔎 | **ChatGPT** | `回复`\n{full_result}"
@@ -107,4 +111,4 @@ async def chatgpt(client: Client, message: Message):
 
 
 if __name__ == '__main__':
-    asyncio.run(fakeopen_completions_chat("你好", 5000, True, 0.8))
+    asyncio.run(fakeopen_completions_chat("你好", True))
