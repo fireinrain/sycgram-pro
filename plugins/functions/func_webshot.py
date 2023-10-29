@@ -60,8 +60,8 @@ async def fetch_webshot_image(site_url: str) -> Dict:
         raise e  # You might want to handle or log the exception here
 
 
-@Client.on_message(command("google"))
-async def google(client: Client, msg: Message):
+@Client.on_message(command("webshot"))
+async def webshot(client: Client, msg: Message):
     """获取网页截图"""
     cmd, args = Parameters.get(msg)
     await msg.edit_text("📷正在获取网页截图,请稍等...")
