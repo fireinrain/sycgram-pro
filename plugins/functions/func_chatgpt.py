@@ -29,6 +29,12 @@ async def fakeopen_completions_chat(query: str, max: int, stream_true: bool, tem
         "max_tokens": max,
         "stream": stream_true  # 开启流式输出
     }
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + get_access_token(),
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/118.0.0.0 Safari/537.36'
+    }
     async with aiohttp.ClientSession() as session:
         async with session.post(fakeopen_completions_url, data=json_data) as response:
             if response.status == 200:
