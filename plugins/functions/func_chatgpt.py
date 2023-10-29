@@ -36,7 +36,7 @@ async def fakeopen_completions_chat(query: str, max: int, stream_true: bool, tem
                       'Chrome/118.0.0.0 Safari/537.36'
     }
     async with aiohttp.ClientSession() as session:
-        async with session.post(fakeopen_completions_url, data=json_data) as response:
+        async with session.post(fakeopen_completions_url, headers=headers, data=json_data) as response:
             if response.status == 200:
                 # 使用iter_any()方法逐块读取流式数据
                 result = ""

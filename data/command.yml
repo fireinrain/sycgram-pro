@@ -344,3 +344,9 @@ chatgpt:
   format: -gpt <文本>
   usage: 和chatgpt对话,并返回对话结果
   wait_prompt: 正在执行命令, 请稍后...
+
+webshot:
+  cmd: wbst
+  format: -wbst <网页地址>
+  usage: 获取网页截图
+  wait_prompt: 正在执行命令, 请稍后...
