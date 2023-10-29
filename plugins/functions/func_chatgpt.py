@@ -89,7 +89,7 @@ async def chatgpt(client: Client, message: Message):
     cmd, args = Parameters.get(message)
     query_str = args
     await message.edit_text("🌍正在询问chatgpt,请稍后...")
-    full_result = fakeopen_completions_chat(query_str, 5000, True, 0.8)
+    full_result = await fakeopen_completions_chat(query_str, 5000, True, 0.8)
     if not full_result:
         full_result = "无法获取chatgpt回复,请检查插件是否正常工作."
     result_text = f"🔎 | **ChatGPT** | `回复`\n{full_result}"
