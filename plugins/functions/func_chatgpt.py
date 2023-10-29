@@ -19,6 +19,7 @@ def get_access_token() -> str:
 
 def fakeopen_api(query: str, max: int, stream_true: bool, tem: float):
     openai.api_base = fakeopen_base
+    openai.api_key = get_access_token()
     # start_time = time.time()  # 记录开始时间
 
     response = openai.ChatCompletion.create(
