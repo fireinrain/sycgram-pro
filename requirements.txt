@@ -28,3 +28,4 @@ pytz~=2023.3.post1
 jieba~=0.42.1
 pinyin~=0.4.0
 aiofiles~=23.2.1
+openai~=0.28.1

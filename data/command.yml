@@ -338,3 +338,9 @@ iptrace:
   format: -iptrace <back/best>
   usage: 主机回程路由测试(back 运行backtrace,best 运行besttrace)
   wait_prompt: 正在执行命令, 请稍后...
+
+chatgpt:
+  cmd: gpt
+  format: -gpt <文本>
+  usage: 和chatgpt对话,并返回对话结果
+  wait_prompt: 正在执行命令, 请稍后...

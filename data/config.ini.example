@@ -3,3 +3,10 @@ api_id=xxxxxx
 api_hash=xxxxxxxxxxxxxxxx
 [plugins]
 root=plugins
+
+[chatgpt]
+access_token=xxxxxxx
+refresh_token=xxxxxxx
+email=xxxxxxxxx
+password=xxxxxxxx
+mfa=xxxxx
