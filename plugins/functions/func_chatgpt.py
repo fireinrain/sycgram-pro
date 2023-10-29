@@ -7,14 +7,14 @@ from core import command
 from tools.helpers import Parameters
 from pyrogram.enums import ParseMode
 
-from core.custom import CMDS_DATA
+from core import bot_config
 import openai
 
 fakeopen_base = 'https://ai.fakeopen.com/v1/'
 
 
 def get_access_token() -> str:
-    return CMDS_DATA.get('chatgpt')['access_token']
+    return bot_config['chatgpt'].get('access_token')
 
 
 def fakeopen_api(query: str, max: int, stream_true: bool, tem: float):
