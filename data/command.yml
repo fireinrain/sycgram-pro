@@ -350,3 +350,9 @@ webshot:
   format: -wbst <网页地址>
   usage: 获取网页截图
   wait_prompt: 正在执行命令, 请稍后...
+
+wdtime:
+  cmd: wdtm
+  format: -wbtm <时区(Asia/Shanghai)>
+  usage: 依据给定的时区获取世界时间
+  wait_prompt: 正在执行命令, 请稍后...
