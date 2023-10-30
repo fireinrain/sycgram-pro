@@ -46,6 +46,6 @@ async def shell(_: Client, msg: Message):
         )
 
     await msg.edit_text(
-        f"{header}> # `{_input}`\n```{_output.strip()}```",
+        f"{header}> # `{_input}`\n```bash\n{_output.strip()}```",
         parse_mode=ParseMode.MARKDOWN
     )
