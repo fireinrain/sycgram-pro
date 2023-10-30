@@ -14,6 +14,16 @@ from core import command
 from tools.helpers import Parameters
 
 
+# 备用api
+# https://api.screenshotmachine.com?
+# key=your_key
+# &url=v2ph.com
+# &device=desktop
+# &dimension=1024x768
+# &format=jpg
+# &cacheLimit=0
+# &delay=3000
+
 def generate_random_string(length):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))
