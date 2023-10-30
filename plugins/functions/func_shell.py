@@ -26,8 +26,15 @@ async def shell(_: Client, msg: Message):
     cmd, _input = Parameters.get(msg)
     if not _input:
         return await show_cmd_tip(msg, cmd)
-
+    # 出现错误及时退出
+    error_exit = 'set -e -o errexit -o pipefail;'
+    # 禁止rm shutdown reboot 命令
+    baned_cmd = ['rm', 'shutdown', 'reboot']
+    for ban in baned_cmd:
+        if ban in _input:
+            await msg.edit_text(f"`🚫{ban}`命令禁止执行!")
     try:
+        _input = error_exit + f" {_input}"
         res = await basher(_input, timeout=30)
     except asyncio.exceptions.TimeoutError:
         return await show_exception(msg, "连接超时！")
