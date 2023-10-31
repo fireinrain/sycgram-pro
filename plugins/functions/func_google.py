@@ -90,6 +90,7 @@ async def google_search(content: str) -> Dict[str, str]:
                     return result
         except Exception as e:
             logger.error(f"Google | Searching error: {e.message}")
+            resp.close()
             continue
 
         resp.raise_for_status()
