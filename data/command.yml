@@ -353,6 +353,6 @@ webshot:
 
 wdtime:
   cmd: wdtm
-  format: -wbtm <时区(Asia/Shanghai)>
-  usage: 依据给定的时区获取世界时间
+  format: -wbtm <无(Asia/Shanghai)|时区代号>
+  usage: 依据给定的时区获取世界时间,默认返回东八区时间
   wait_prompt: 正在执行命令, 请稍后...

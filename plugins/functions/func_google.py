@@ -75,23 +75,27 @@ async def google_search(content: str) -> Dict[str, str]:
                       'Chrome/118.0.0.0 Safari/537.36',
 
     }
+    session = aiohttp.ClientSession()
     # socks5
     proxy_ips = await fetch_proxy_list()
     for proxy in proxy_ips:
         result: Dict[str, str] = {}
         logger.info(f"当前使用socks5代理: {proxy}")
         url = f"https://www.google.com/search?q={parse.quote(content)}"
-        async with session.get(url, headers=headers, proxy=f"socks5://{proxy}") as resp:
-            if resp.status == 200:
-                soup = BeautifulSoup(await resp.text(), 'lxml')
-                for p in soup.find_all('h3'):
-                    if p.parent.has_attr('href'):
-                        result[p.text] = p.parent.attrs.get('href')
-                        logger.info(f"Google | Searching | {result[p.text]}")
-                        if len(result) > 10:
-                            break
-                logger.info("使用代理访问google 成功！")
-                return result
+        try:
+            async with session.get(url, headers=headers, proxy=f"socks5://{proxy}") as resp:
+                if resp.status == 200:
+                    soup = BeautifulSoup(await resp.text(), 'lxml')
+                    for p in soup.find_all('h3'):
+                        if p.parent.has_attr('href'):
+                            result[p.text] = p.parent.attrs.get('href')
+                            logger.info(f"Google | Searching | {result[p.text]}")
+                            if len(result) > 10:
+                                break
+                    logger.info("使用代理访问google 成功！")
+                    return result
+        except Exception as e:
+            continue
 
         resp.raise_for_status()
 
