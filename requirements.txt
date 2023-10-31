@@ -15,6 +15,7 @@ duckduckgo-search==3.9.3
 edge-tts==6.1.8
 emoji==2.8.0
 frozenlist==1.4.0
+googlesearch-python==1.2.3
 h11==0.14.0
 h2==4.1.0
 hpack==4.0.0
