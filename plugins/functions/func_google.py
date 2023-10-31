@@ -1,4 +1,5 @@
 import asyncio
+import random
 import re
 import aiohttp
 from pyrogram import Client
@@ -10,10 +11,10 @@ from core import command
 from tools.helpers import Parameters, show_cmd_tip, show_exception
 from typing import Any, Dict
 from urllib import parse
-from tools.sessions import session
 
 from bs4 import BeautifulSoup
 from loguru import logger
+from googlesearch import search
 
 """
 data/command.yml
@@ -38,7 +39,8 @@ async def google(_: Client, msg: Message):
         return await show_cmd_tip(msg, cmd)
 
     try:
-        res = await google_search(pattern)
+        # res = await google_search(pattern)
+        res = google_search_with_lib(pattern)
         links = '\n\n'.join(
             f"[{title[0:30]}]({url})" for title, url in res.items()
         )
@@ -65,15 +67,7 @@ async def google(_: Client, msg: Message):
 
 async def google_search(content: str) -> Dict[str, str]:
     headers = {
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,'
-                  'application/signed-exchange;v=b3;q=0.7',
-        'Accept-Encoding': 'gzip',
-        'Accept-Language': 'zh',
-        'Cache-Control': 'max-age=0',
-        'Referer': 'https://www.google.com',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
-                      'Chrome/118.0.0.0 Safari/537.36',
-
+        'User-Agent': get_useragent(),
     }
     session = aiohttp.ClientSession()
     # socks5
@@ -101,6 +95,14 @@ async def google_search(content: str) -> Dict[str, str]:
         resp.raise_for_status()
 
 
+def google_search_with_lib(content: str) -> Dict[str, str]:
+    result: Dict[str, str] = {}
+    search_results = search(content, advanced=True, num_results=10)
+    for item in search_results:
+        result[item.title] = item.url
+    return result
+
+
 async def fetch_proxy_list() -> list[str]:
     url = ('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=us&ssl=all'
            '&anonymity=all')
@@ -115,3 +117,16 @@ async def fetch_proxy_list() -> list[str]:
             else:
                 print(f"Request failed with status code: {response.status}")
                 return None
+
+
+def get_useragent():
+    _useragent_list = [
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.62',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0'
+    ]
+    return random.choice(_useragent_list)
