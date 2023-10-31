@@ -95,6 +95,7 @@ async def google_search(content: str) -> Dict[str, str]:
                     logger.info("使用代理访问google 成功！")
                     return result
         except Exception as e:
+            logger.error(f"Google | Searching error: {e.message}")
             continue
 
         resp.raise_for_status()
