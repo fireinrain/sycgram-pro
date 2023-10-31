@@ -80,10 +80,10 @@ async def google_search(content: str) -> Dict[str, str]:
     proxy_ips = await fetch_proxy_list()
     for proxy in proxy_ips:
         result: Dict[str, str] = {}
-        logger.info(f"当前使用socks5代理: {proxy}")
+        logger.info(f"当前使用http代理: {proxy}")
         url = f"https://www.google.com/search?q={parse.quote(content)}"
         try:
-            async with session.get(url, headers=headers, proxy=f"socks5://{proxy}") as resp:
+            async with session.get(url, headers=headers, proxy=f"http://{proxy}") as resp:
                 if resp.status == 200:
                     soup = BeautifulSoup(await resp.text(), 'lxml')
                     for p in soup.find_all('h3'):
@@ -102,7 +102,7 @@ async def google_search(content: str) -> Dict[str, str]:
 
 
 async def fetch_proxy_list() -> list[str]:
-    url = ('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=10000&country=us&ssl=all'
+    url = ('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=us&ssl=all'
            '&anonymity=all')
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
