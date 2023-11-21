@@ -114,7 +114,7 @@ uninstall_sycgram_pro(){
 
 reinstall_sycgram_pro(){
     rm -rf ${PROJECT_PATH}
-    install_sycgram "-it"
+    install_sycgram_pro "-it"
 }
 
 install_sycgram_pro(){
