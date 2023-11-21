@@ -13,6 +13,20 @@
 bash <(curl -fsL "https://raw.githubusercontent.com/fireinrain/sycgram-pro/main/install.sh")
 ```
 
+## 启动
+
+```bash
+docker run -it --name sycgram-pro --env TZ="Asia/Shanghai" --restart always -v ./data:/sycgram-pro/data liuzy/sycgram-pro:latest
+
+输入电话号码,验证码,two auth factor 密码
+
+ctrl + p 加上 ctrl+q 使得容器进入后台工作
+
+注意: 这一步的主要作用是获得telegram 登录session
+
+
+```
+
 ## 更新存在的问题
 
 > 指令更新是通过拉取一次`watchower`来更新。
